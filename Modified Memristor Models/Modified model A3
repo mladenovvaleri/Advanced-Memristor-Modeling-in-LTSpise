@@ -1,0 +1,24 @@
+*LTSpice nonlinear drift modified library model of a titanium dioxide 
+*memristor with a modified Biolek window with a Voltage-Dependent Variable Exponent
+*connections: te - top electrode, be - bottom electrode, Y - additional
+*electrode for measuring the state variable
+.subckt A3 te be Y
+*memristor model parameters
+.params ron=100 roff=16e3 k=10e3 b=10.11 cc=3.34 Cint=1 pp=2 mm=1e-4
+*capacitor for integration of memristor state variable time derivative
+Cint Y 0 1 IC=0.3
+*additional parallel high-valued resistor for preventing convergence problems
+Rad Y 0 10G
+*memristor state variable
+Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y)))))*(1-pow((V(Y)-stpp(-V(te,be),mm)),(2*round(b/(cc+abs(V(te,be)))))))}
+*memristor conductance
+G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+* a step-like logistic function
+.func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+.ends A3
+*
+*Source: Mladenov, V.; Kirilov, S. Advanced Memristor Model with a Modified Biolek
+*Window and a Voltage-Dependent Variable Exponent, Informatyka, Automatyka, 
+*Pomiary w Gospodar-ce i Ochronie Środowiska (IAPGOŚ) 2018, 8(2), 
+*pp. 15–20, DOI:10.5604/01.3001.0012.0697,
+*https://e-iapgos.pl/resources/html/article/details?id= 173606.
