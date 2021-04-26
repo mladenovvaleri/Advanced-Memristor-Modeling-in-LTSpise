@@ -1,0 +1,21 @@
+*titanium dioxide memristor model with Ascoli-Corinto window function
+.subckt K4 te be Y
+*memristor parameters
+.params ron=100 roff=16e3 k=10e3 Cint=1 pp=200 m=1e-4
+*capacitor for integration the state variable time derivative
+Cint Y 0 1 IC=0.3
+*high-valued resistance for preventing convergence problems
+Rad Y 0 1G
+*memristor state modeling
+Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(1-pow((V(Y)-stpp(-V(te,be),m)),(2*pp))))}   
+*memristor conductance
+G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+* step-like logistic window function
+.func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+.ends K4
+*
+*Sources: 1. Corinto, F.; Ascoli, A. A Boundary Condition-Based 
+*Approach to the Modeling of Memristor Nanostructures. IEEE Trans. 
+*Circuits Syst. 2012, DOI: 10.1109/TCSI.2012.2190563, Vol. 59, pp. 2713–2726.
+* 2. Ascoli, A.; Tetzlaff, R.; Corinto, F.; Gilli, M. PSpice switch-based versatile memristor 
+* model. IEEE Int. Symp. Circuits Syst. 2013, DOI: 10.1109/ISCAS.2013.6571818, pp. 205–208.
