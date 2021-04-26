@@ -1,0 +1,19 @@
+*LTSpice nonlinear drift modified library model of a titanium dioxide 
+*memristor with a voltage-dependent Joglekar,s window function
+*connections: te - top electrode, be - bottom electrode, Y - additional
+*electrode for measuring the state variable
+.subckt A1 te be Y
+*memristor model parameters
+.params ron=100 roff=16e3 k=10e3 b=10.23 cc=6.11 Cint=1
+*capacitor for integration of memristor state variable time derivative
+Cint Y 0 1 IC=0.3
+*additional parallel high-valued resistor for preventing convergence problems
+Rad Y 0 1G
+*memristor state variable
+Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(1-(pow((2*V(Y)-1),(2*round(b/cc+abs(V(te,be))))))))}
+*memristor conductance   
+G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+.ends A1
+*Source: Valeri Mladenov, Stoyan Kirilov, A Nonlinear Memristor Model with Activation Thresholds
+*and Variable Window Functions, IEEE Proceeding of 15th International Workshop on Cellular Nanoscale
+*Networks and their Applications (CNNA), 23-25 August 2016, Dresden, Germany, ISBN 978-3-8007-4252-3.
