@@ -1,0 +1,21 @@
+*LTSpice modified nonlinear drift Lehtonen-Laiho library model of a hafnium dioxide 
+*memristor with a modified Biolek window with a voltage dependent exponent 
+*connections: te - top electrode, be - bottom electrode, Y - additional
+*electrode for measuring the state variable
+.subckt A7 te be Y
+* memristor model parameters
+.params a=1.1 m=5 mm=1e-4 b=9.83 cc=2.33 hi=20.8e-6 beta=60.3e-6 gama=1.33 alfa=1.42 n=5 pp=2
+*capacitor for integration of memristor state variable time derivative
+Cint Y 0 1 IC=0.3
+*additional parallel high-valued resistor for preventing convergence problems
+Rad Y 0 10G
+*memristor state variable
+Gy 0 Y value={((a)*(pow(V(te,be),m))*((1-pow((V(Y)-stpp(V(Y),mm)),(2*(round(b/(cc+abs(V(te,be))))))))))}
+* memristor conductance
+G1 te be value={(hi*(exp(gama*(V(te,be)))-1)+(beta*(pow(V(Y),n))*sinh(alfa*(V(te,be)))))}
+*a step-like logistic function
+.func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+.ends A7
+*
+*Source: V. Mladenov, Analysis of Memory Matrices with HfO2 Memristors in a PSpice Environment, Electronics
+* 2019, 8(4), 383; doi:10.3390/electronics8040383, httPS://www.mdpi.com/2079-9292/8/4/383.
