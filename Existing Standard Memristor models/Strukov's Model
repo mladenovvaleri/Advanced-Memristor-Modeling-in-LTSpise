@@ -1,0 +1,19 @@
+*titanium dioxide memristor model with Strukov window function
+.subckt K1 te be Y
+*memristor parameters
+.params ron=100 roff=16e3 k=10e3 Cint=1
+*capacitor for integration the state variable time derivative
+Cint Y 0 1 IC=0.3
+*high-valued resistance for preventing convergence problems
+Rad Y 0 1G
+*memristor state modeling
+Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(4*V(Y)*(1-V(Y))))}
+*memristor conductance
+G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+.ends K1
+*Sources: 1. Strukov, D.; Snider, G.; Stewart, D.; Williams, R.S. The Missing 
+Memristor Found. Nat. Lett. 2008, 453, doi:10.1038/nature06932, pp. 80–83.
+* 2. Joglekar, Y.; Wolf, S. The Elusive Memristor: Properties of Basic 
+*Electrical Circuits. Eur. J. Phys. 2009, Vol. 30, pp. 661–675.
+*3. Biolek, Z.; Biolek, D.; Biolkova, V. SPICE Model of Memristor with Nonlinear
+*Dopant Drift. Radioengineering 2009, 18, pp. 210–214.
