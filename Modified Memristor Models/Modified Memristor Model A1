@@ -14,6 +14,7 @@ Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(1-(pow((2*V(Y)-1),(2*r
 *memristor conductance   
 G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 .ends A1
+*
 *Source: Valeri Mladenov, Stoyan Kirilov, A Nonlinear Memristor Model with Activation Thresholds
 *and Variable Window Functions, IEEE Proceeding of 15th International Workshop on Cellular Nanoscale
 *Networks and their Applications (CNNA), 23-25 August 2016, Dresden, Germany, ISBN 978-3-8007-4252-3.
