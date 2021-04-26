@@ -1,0 +1,22 @@
+* hafnium dioxide memristor model with window function
+*terminals - top electrode te, bottom electrode be,
+*additional electrode Y for measuring the state variable
+.subckt K6 te be Y
+* memristor parameters
+.params mm=1e-4 tswp=1 tswn=1 utp=0.5 utn=-0.5 ron=3e3 roff=45e3
+*capacitor for integration the state variable time derivative
+Cint Y 0 1 IC=0.3
+*high-valued resistance for preventing convergence problems
+Rad Y 0 10G
+*memristor state modeling
+Gy 0 Y value={((((1/(utp*tswp))*V(te,be))*(stpp((V(te,be)-utp),mm)))+((-(1/(utn*tswn)))*V(te,be)*(stpp((utn-V(te,be)),mm))))}
+*memristor conductance
+G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+* step-like logistic window function
+.func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+.ends K6
+*
+* Source: 1. Amer, С., Sayyaparaju, S., Rose, G., Beckmann, 
+*K., Cady, N. A practical hafnium-oxide memristor model suitable for 
+*circuit design and simulation. 2017 IEEE International Symposium 
+*on Circuits and Systems (ISCAS), DOI: 10.1109/ISCAS.2017.8050790, pp. 1–5.
