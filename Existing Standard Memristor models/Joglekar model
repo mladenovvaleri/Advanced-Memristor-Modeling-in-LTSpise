@@ -1,8 +1,18 @@
-*titanium dioxide memristor model with Joglekar window function
+*Titanium dioxide memristor model with Joglekar's window function
+*fj=1-(2*x-1)^(2*p); x is the memristor state variable, pp is a
+*positive integer exponent; the nonlinearity of the model increases
+*with decreasing the exponent pp
+*representing the nonlinear ionic dopant drift for high-level signals
+*The model is appropriate for low-frequency and high-amplitude signals
+*for analysis of titanium dioxide based memristors and memristor circuits
 * terminals - top electrode te, bottom electrode be, and additional
 *electrode for measuring the state variable Y
 .subckt K2 te be Y
-*memristor parameters
+*memristor model parameters
+*ron - resistance of the memristor in low-resistance state
+*roff - resistance of the memristor for high-resistance state
+*k - a constant dependent on the ionic mobility mu, memristor length D and
+*the low-resistance ron: k=(mu*ron)/(D^2);
 .params ron=100 roff=16e3 k=10e3 Cint=1 pp=3
 *capacitor for integration the state variable time derivative
 Cint Y 0 1 IC=0.3
