@@ -1,8 +1,15 @@
-*hafnium dioxide memristor model with a highly nonlinear window function
-* model name and terminals - top electrode, bottom electrode, and an electrode
-* for measuring the state variable
+*LTSPICE library model for hafnium dioxide memristors
+* with a highly nonlinear window function
+*the model is suitable for analyzing hafnium dioxide memristors
+*for soft-switching and hard-switching
+* terminals - top electrode te, bottom electrode be, and additional
+*electrode Y for measuring the memristor state variable
 .subckt K7 te be Y
 * memristor model parameters
+*ron - on resistance, roff - off resistance, utp - positive activation threshold,
+*utn - negative activation threshold, tswp - time for on switching,
+*tswn - time for off switching, titahrs, titalrs, betahrs, betalrs, phrs,
+*plrs - parameters for tuning the memristor model
 .params mm=1e-4 tswp=0.1 tswn=0.1 utp=0.5 utn=-0.5 ron=3e3 
 .params roff=45e3 titahrs=1.2 titalrs=1.2 betahrs=1.3 betalrs=1.3;
 .params phrs=1.7 plrs=1.7
