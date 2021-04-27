@@ -1,5 +1,5 @@
-*Titanium dioxide memristor model with Joglekar's window function
-*fj=1-(2*x-1)^(2*p); x is the memristor state variable, pp is a
+*LTSPICE library model of titanium dioxide memristor with Joglekar's window function
+*fj=1-(2*x-1)^(2*pp); x is the memristor state variable, pp is a
 *positive integer exponent; the nonlinearity of the model increases
 *with decreasing the exponent pp
 *representing the nonlinear ionic dopant drift for high-level signals
