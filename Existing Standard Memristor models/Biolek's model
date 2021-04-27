@@ -1,8 +1,20 @@
-*titanium dioxide memristor model with Biolek window function
+*LTSPICE library model of titanium dioxide memristor with Biolek window function
+*the original Biolek's window function fb(x,i)=1-(x-stp(-i))^(2*pp)
+*is replaced by a smooth differentiable analogue
+* fbm(x,i)=1-(x-stpp(-i))^(2*pp);
+*logistic step-like function stpp for avoiding convergence problems
+*stpp(i,m)={0.5*(1+(i/sqrt(pow(i,2)+m)))}
+*this model represents the boundary effects for hard-switching mode
+*and the nonlinear ionic dopant drift, appropriate for simulation of
+*memristor circuits for soft-switching mode as well
 *terminals - top electrode te, bottom electrode be and additional 
 *electrode Y for measuring the state variable
 .subckt K3 te be Y
 *memristor parameters
+*ron - resistance of the memristor in low-resistance state
+*roff - resistance of the memristor for high-resistance state
+*k - a constant dependent on the ionic mobility mu, memristor length D and
+*the low-resistance ron: k=(mu*ron)/(D^2);
 .params ron=100 roff=16e3 k=10e3 Cint=1 pp=3 m=1e-4
 *capacitor for integration the state variable time derivative
 Cint Y 0 1 IC=0.3
@@ -16,5 +28,5 @@ G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
 .ends K3
 *
-*Biolek, Z.; Biolek, D.; Biolkova, V. SPICE Model of Memristor with Nonlinear
+*Source: Biolek, Z.; Biolek, D.; Biolkova, V. SPICE Model of Memristor with Nonlinear
 *Dopant Drift. Radioengineering 2009, 18, pp. 210–214.
