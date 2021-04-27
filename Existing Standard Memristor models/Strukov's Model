@@ -1,4 +1,6 @@
-*Titanium dioxide memristor model with Strukov-Williams's window function
+*LTSPICE library model of titanium dioxide memristor with Strukov-Williams's window function
+*fsw=x*(1-x), where x is the memristor state variable
+*representing the nonlinear ionic dopant drift for high-level signals
 *terminals: top electrode (te), bottom electrode (be) and electrode for
 *measuring the state variable (Y)
 *The model is appropriate for low-frequency and high-amplitude signals
@@ -19,7 +21,7 @@ Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(4*V(Y)*(1-V(Y))))}
 *memristor conductance
 G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 .ends K1
-
+*
 *Sources: 1. Strukov, D.; Snider, G.; Stewart, D.; Williams, R.S. The Missing 
 Memristor Found. Nat. Lett. 2008, 453, doi:10.1038/nature06932, pp. 80–83.
 * 2. Joglekar, Y.; Wolf, S. The Elusive Memristor: Properties of Basic 
