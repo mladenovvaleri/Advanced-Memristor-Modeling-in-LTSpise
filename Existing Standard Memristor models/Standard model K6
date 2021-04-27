@@ -1,9 +1,16 @@
-* hafnium dioxide memristor model with window function
+*LTSPICE library model of hafnium dioxide memristor with a simple window function
+*this model is suitable for analysis of hafnium dioxide memristors
+*for hard-switching and soft-switching mode
 *terminals - top electrode te, bottom electrode be,
 *additional electrode Y for measuring the state variable
 .subckt K6 te be Y
 * memristor parameters
+* tswp - time for switching to low resistance state, tswn - time for
+*switching to high resistance state, utp - positive voltage threshold,
+*utn - negative voltage threshold, ron - low resistance, roff - high resistance
 .params mm=1e-4 tswp=1 tswn=1 utp=0.5 utn=-0.5 ron=3e3 roff=45e3
+*step-like smooth logistic function stpp(i,mm)=0.5*(1+(i/sqrt(pow(i,2)+mm)))
+*applied for avoiding convergence problems
 *capacitor for integration the state variable time derivative
 Cint Y 0 1 IC=0.3
 *high-valued resistance for preventing convergence problems
