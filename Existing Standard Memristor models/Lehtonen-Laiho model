@@ -1,7 +1,15 @@
-*titanium dioxide nonlinear Lehtonen-Laiho memristor model 
-* with modified Biolek window function
+*LTSPICE library model of titanium dioxide memristor 
+*described by Lehtonen-Laiho model with increased nonlinearity
+*with a modified Biolek window function for representation
+*the nonlinear ionic drift and the boundary effects for hard-switching
+*the model is suitable for analysis of memristors and memristor-based circuits
+*for both soft-switching and hard-switching, for high and low frequencies
+*a step-like smooth logistic function stpp(i,mm)=0.5*(1+(i/sqrt(pow(i,2)+mm))) 
+*is used in the Biolek's window function for avoiding convergence problems
+*terminals: top electrode te, bottom electrode be, additional electrode Y
+*for measuring the memristor state variable
 .subckt K5 te be Y
-* memristor parameters
+* memristor parameters for tuning the model
 .params a=1.1 m=5 mm=1e-4 pp=3 hi=20e-6 beta=60e-6 gama=1.3 alfa=1.4 n=5
 *capacitor for integration the state variable time derivative 
 Cint Y 0 1 IC=0.3
