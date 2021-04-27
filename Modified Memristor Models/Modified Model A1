@@ -1,9 +1,17 @@
-*LTSpice nonlinear drift modified library model of a titanium dioxide 
-*memristor with a voltage-dependent Joglekar,s window function
+*LTSpice nonlinear drift modified by Prof. V. Mladenov library model of a titanium 
+*dioxide memristor with a voltage-dependent Joglekar,s window function
+*the model realistically represents the nonlinear ionic dopant drift
+*due to the incorporated dependence between the positive integer exponent
+*pp(v)=round(b/(cc+abs(v))) in the window function and the applied voltage
+*the nonlinearity of the ionic dopant drift increases with increasing
+*the applied memristor voltage v
 *connections: te - top electrode, be - bottom electrode, Y - additional
 *electrode for measuring the state variable
 .subckt A1 te be Y
 *memristor model parameters
+*ron - on resistance, roff - off resistance, k - a constant dependent on
+*the parameters ron, the ionic mobility mu and the memristor length D
+*k=(mu*ron)/(D^2); b, cc - tuning parameters
 .params ron=100 roff=16e3 k=10e3 b=10.23 cc=6.11 Cint=1
 *capacitor for integration of memristor state variable time derivative
 Cint Y 0 1 IC=0.3
