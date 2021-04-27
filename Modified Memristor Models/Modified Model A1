@@ -4,25 +4,33 @@
 *due to the incorporated dependence between the positive integer exponent
 *pp(v)=round(b/(cc+abs(v))) in the window function and the applied voltage
 *the nonlinearity of the ionic dopant drift increases with increasing
-*the applied memristor voltage v
+*the applied memristor voltage v, if the absolute value of the applied voltage is
+*lower than the activation thresholds then the state variable does not change
+*and the memristor behaves as a linear resistor
+*the applied step-like logistic function stpp is applied
+*for avoiding convergence problems
 *connections: te - top electrode, be - bottom electrode, Y - additional
 *electrode for measuring the state variable
 .subckt A1 te be Y
 *memristor model parameters
 *ron - on resistance, roff - off resistance, k - a constant dependent on
 *the parameters ron, the ionic mobility mu and the memristor length D
-*k=(mu*ron)/(D^2); b, cc - tuning parameters
-.params ron=100 roff=16e3 k=10e3 b=10.23 cc=6.11 Cint=1
+*k=(mu*ron)/(D^2); b, cc - tuning parameters, uthr1 - negative activation threshold,
+*uthr2 - positive activation threshold
+.params ron=100 roff=16e3 k=10e3 b=10.23 cc=6.11 Cint=1 uthr1=-0.15 uthr2=0.15 mm=0.0001
 *capacitor for integration of memristor state variable time derivative
 Cint Y 0 1 IC=0.3
 *additional parallel high-valued resistor for preventing convergence problems
 Rad Y 0 1G
 *memristor state variable
-Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(1-(pow((2*V(Y)-1),(2*round(b/cc+abs(V(te,be))))))))}
+Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(1-(pow((2*V(Y)-1),(2*round(b/cc+abs(V(te,be))))))))*((stpp((uthr1-V(te,be)),mm))+(stpp((V(te,be)-uthr2),mm)))}
 *memristor conductance   
 G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+*a step-like logistic function
+.func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
 .ends A1
 *
-*Source: Valeri Mladenov, Stoyan Kirilov, A Nonlinear Memristor Model with Activation Thresholds
+*Sources: 1. Valeri Mladenov, Stoyan Kirilov, A Nonlinear Memristor Model with Activation Thresholds
 *and Variable Window Functions, IEEE Proceeding of 15th International Workshop on Cellular Nanoscale
 *Networks and their Applications (CNNA), 23-25 August 2016, Dresden, Germany, ISBN 978-3-8007-4252-3.
+* 2. Valeri Mladenov, Advanced Memristor Modeling - Memristor Circuits and Networks, MDPI, ISBN 978-3-03897-103-0 (PDF), 2019, pp. 172.
