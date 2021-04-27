@@ -1,6 +1,18 @@
-*titanium dioxide memristor model with Ascoli-Corinto window function
+*LTSPICE library model of titanium dioxide memristor with Ascoli-Corinto window function
+*fAC=1, if 0<x<1, fAC=1, if x=0 and v>=0, fAC=1 if x=1 and v<=0,
+*fAC=0 if x=0 and v<0, fAC=0 if x=1 and v>0
+*this window function represents correctly the boundary effects
+*memristor terminals: top electrode te, bottom electrode be, and additional electrode Y
+*for measuring the memristor state variable x
 .subckt K4 te be Y
 *memristor parameters
+*ron - low resistance state, roff - high resistance state, k - a constant
+*dependent on ron, the ionic mobility mu and the memristor length D
+*pp - positive integer exponent with a very high value for
+*approximation the window function, in this case its behaviour is near
+*to the idealized Ascoli-Corinto window function
+*a step-like logistic function stpp(i,m)=0.5*(1+(i/sqrt(pow(x,2)+m)))
+*applied for avoiding convergence problems
 .params ron=100 roff=16e3 k=10e3 Cint=1 pp=200 m=1e-4
 *capacitor for integration the state variable time derivative
 Cint Y 0 1 IC=0.3
