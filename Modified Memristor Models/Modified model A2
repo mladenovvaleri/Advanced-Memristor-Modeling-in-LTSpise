@@ -1,21 +1,35 @@
-*LTSpice nonlinear drift modified library model of a titanium dioxide 
-*memristor with a modified Biolek window with additional sinusoidal component
+*LTSpice library model of a titanium dioxide memristor modified by Prof. V. Mladenov
+*with a modified Biolek window with additional sinusoidal component
+*nonlinear drift model with activation thresholds, it could represent
+*both soft-switching and hard-switching mode, the boundary effects and
+*the nonlinear ionic dopant drift for high-level signals
+*suitable for high- and low-frequency signals, for simulation of
+*memristor neural networks, memory crossbars, reconfigurable devices
+*the original Biolek model is a special case of the presented model
+*the nonlinearity of the ionic dopant drift increases with increasing
+*the applied memristor voltage v, if the absolute value of the applied voltage is
+*lower than the activation thresholds then the state variable does not change
+*and the memristor behaves as a linear resistor
+*the applied step-like logistic function stpp is applied
+*for avoiding convergence problems 
 *connections: te - top electrode, be - bottom electrode, Y - additional
 *electrode for measuring the state variable
 .subckt A2 te be Y
 *memristor model parameters
-.params ron=100 roff=16e3 k=10e3 mm=3.12 Cint=1 m=1e-4 pp=2
+*ron - on resistance state, roff - high resistance state, k=(mu*ron)/(D^2)
+*k is a constant dependent on the memristor parameters, mm, pp are tuning coefficients
+.params ron=100 roff=16e3 k=10e3 mm=3.12 Cint=1 m=1e-4 pp=2 uthr1=-0.15 uthr2=0.15
 *capacitor for integration of memristor state variable time derivative
 Cint Y 0 1 IC=0.3
 *additional parallel high-valued resistor for preventing convergence problems
 Rad Y 0 10G
 *memristor state variable
-Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(1/(mm+1))*(mm*pow((sin(pi*V(Y))),2)+(1-pow((V(Y)-stpp(V(Y),m)),(2*pp)))))}
+Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(1/(mm+1))*(mm*pow((sin(pi*V(Y))),2)+(1-pow((V(Y)-stpp(V(Y),m)),(2*pp)))))*(((stpp((uthr1-V(te,be)),m))+(stpp((V(te,be)-uthr2),m))))}
 *memristor conductance 
 G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
-* a step-like logistic function
+* a step-like logistic function applied for avoiding convergence problems
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
 .ends A2
-*
-* Source: Mladenov, V., S. Kirilov. , A Nonlinear Drift Memristor Model with a Modified Biolek Window Function 
-and Activation Threshold. Electronics 2017, 6(4), 77; doi: 10.3390/electronics6040077, pp. 1 – 15.
+* Sources: 1. Mladenov, V., S. Kirilov. , A Nonlinear Drift Memristor Model with a Modified Biolek Window Function 
+*and Activation Threshold. Electronics 2017, 6(4), 77; doi: 10.3390/electronics6040077, pp. 1 – 15.
+* 2. Valeri Mladenov, Advanced Memristor Modeling - Memristor Circuits and Networks, MDPI, ISBN 978-3-03897-103-0 (PDF), 2019, pp. 172.
