@@ -24,6 +24,11 @@ G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 * a modified step-like logistic window function
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
 .ends K7
+*properties: low operating frequencies, middle signal levels, high nonlinearity,
+*middle accuracy, activation thresholds - applied, soft-switching 
+*operating mode, representation of boundary effects - applied, nonlinear ion drift - voltage 
+*representation - not applied, tunability - partial, high complexity, application - analysis of analog
+* and digital devices, neural networks
 *
 * Source: 1. Amer, С., Sayyaparaju, S., Rose, G., Beckmann, 
 *K., Cady, N. A practical hafnium-oxide memristor model suitable for 
