@@ -16,6 +16,11 @@ G1 te be value={(hi*(exp(gama*(V(te,be)))-1)+(beta*(pow(V(Y),n))*sinh(alfa*(V(te
 * a step-like logistic function
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
 .ends A6
+*properties: low, middle and high operating frequencies, low, middle and high signal levels, high nonlinearity,
+*high accuracy, activation thresholds - applied, soft-switching and hard-switching
+*operating mode, representation of boundary effects - applied, nonlinear ion drift - voltage 
+*representation - applied, tunability - good, middle complexity, application - analysis of analog
+* and digital devices, neural networks, memories
 *
 *Source: V. Mladenov, A New Simplified Model for HfO2-based Memristor, Proceedings of 8th International 
 *Conference on Modern Circuits and Systems Technologies (MOCAST) 2019, 978-1-7281-1184-1/19/, 2019.
