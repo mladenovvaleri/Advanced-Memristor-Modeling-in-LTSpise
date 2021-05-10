@@ -21,6 +21,10 @@ Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(4*V(Y)*(1-V(Y))))}
 *memristor conductance
 G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 .ends K1
+*properties: low operating frequencies, low and middle signal levels, middle nonlinearity,
+*low accuracy, activation thresholds - not used, soft-switching operating mode, partial
+*representation of boundary effects, nonlinear ion drift - voltage representation - not used,
+*tunability - no, low complexity, application - analysis of analog and digital devices
 *
 *Sources: 1. Strukov, D.; Snider, G.; Stewart, D.; Williams, R.S. The Missing 
 Memristor Found. Nat. Lett. 2008, 453, doi:10.1038/nature06932, pp. 80–83.
