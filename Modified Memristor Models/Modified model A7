@@ -16,6 +16,11 @@ G1 te be value={(hi*(exp(gama*(V(te,be)))-1)+(beta*(pow(V(Y),n))*sinh(alfa*(V(te
 *a step-like logistic function
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
 .ends A7
+*properties: low, middle and high operating frequencies, low, middle and high signal levels, high nonlinearity,
+*high accuracy, activation thresholds - applied, soft-switching and hard-switching
+*operating mode, representation of boundary effects - applied, nonlinear ion drift - voltage 
+*representation - applied, tunability - good, middle complexity, application - analysis of analog
+* and digital devices, neural networks, memories
 *
 *Source: V. Mladenov, Analysis of Memory Matrices with HfO2 Memristors in a PSpice Environment, Electronics
 * 2019, 8(4), 383; doi:10.3390/electronics8040383, httPS://www.mdpi.com/2079-9292/8/4/383.
