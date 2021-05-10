@@ -30,6 +30,12 @@ G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 * a step-like logistic function applied for avoiding convergence problems
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
 .ends A2
+*properties: low, middle operating frequencies, low, middle and high signal levels, high nonlinearity,
+*high accuracy, activation thresholds - not applied, soft-switching and hard-switching 
+*operating mode, representation of boundary effects, nonlinear ion drift - voltage 
+*representation - applied, tunability - good, middle complexity, application - analysis of analog
+* and digital devices, neural networks
+*
 * Sources: 1. Mladenov, V., S. Kirilov. , A Nonlinear Drift Memristor Model with a Modified Biolek Window Function 
 *and Activation Threshold. Electronics 2017, 6(4), 77; doi: 10.3390/electronics6040077, pp. 1 – 15.
 * 2. Valeri Mladenov, Advanced Memristor Modeling - Memristor Circuits and Networks, MDPI, ISBN 978-3-03897-103-0 (PDF), 2019, pp. 172.
