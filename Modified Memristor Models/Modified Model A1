@@ -29,6 +29,11 @@ G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 *a step-like logistic function
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
 .ends A1
+*properties: low, middle operating frequencies, low, middle signal levels, high nonlinearity,
+*high accuracy, activation thresholds - applied, soft-switching and hard-switching 
+*operating mode, representation of boundary effects, nonlinear ion drift - voltage 
+*representation - applied, tunability - good, middle complexity, application - analysis of analog
+* and digital devices, neural networks
 *
 *Sources: 1. Valeri Mladenov, Stoyan Kirilov, A Nonlinear Memristor Model with Activation Thresholds
 *and Variable Window Functions, IEEE Proceeding of 15th International Workshop on Cellular Nanoscale
