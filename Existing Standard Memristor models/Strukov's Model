@@ -1,4 +1,4 @@
-*LTSPICE library model of titanium dioxide memristor with Strukov-Williams's window function
+*Titanium dioxide memristor model with Strukov-Williams's window function
 *fsw=x*(1-x), where x is the memristor state variable
 *representing the nonlinear ionic dopant drift for high-level signals
 *terminals: top electrode (te), bottom electrode (be) and electrode for
