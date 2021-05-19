@@ -1,5 +1,5 @@
 *LTSpice modified nonlinear drift Lehtonen-Laiho library model of a titanium dioxide 
-*memristor with a modified Biolek window and a voltage-dependent exponent 
+*memristor with a modified Joglekar-Biolek window and a voltage-dependent exponent 
 *connections: te - top electrode, be - bottom electrode, Y - additional
 *electrode for measuring the state variable
 .subckt A5 te be Y
@@ -27,3 +27,4 @@ G1 te be value={(hi*(exp(gama*(V(te,be)))-1)+(beta*(pow(V(Y),n))*sinh(alfa*(V(te
 *doi:10.3390/electronics7110289, httPS://www.mdpi.com/2079-9292/7/11/289.
 *2. Valeri Mladenov, Advanced Memristor Modeling - Memristor Circuits and Networks, 
 *MDPI, ISBN 978-3-03897-103-0 (PDF), 2019, pp. 172.
+*3.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
