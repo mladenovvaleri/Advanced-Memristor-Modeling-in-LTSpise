@@ -5,7 +5,7 @@
 .subckt AA9 te be Y
 *memristor model parameters
 .params yon=0.06 sigmap=4e-5 Cint=1 A=1e-10 sigmaoff=0.013 sigmaon=4.5e-1
-.params yoff=0.4 Gm=0.025 mm=1.1 beta=500 k=1000 h=0.014 B=1e-4 pp=3
+.params yoff=0.4 Gm=0.025 mm=0.3 beta=500 k=1000 h=0.003 B=1e-4 pp=10
 *modeling the memristor current
 G1 te be value={V(te,be)*(Gm*V(Y)+(1-V(Y))*(h*(pow(V(te,be),2))))}
 *modeling the memristor state
@@ -23,7 +23,7 @@ Rad Y 0 1G
 *representation - applied, tunability - good, middle complexity, application - analysis of analog
 * and digital devices, neural networks, memories
 *
-*Source: Mladenov, V, “A Modified Tantalum Oxide Memristor Model 
+*Sources: 1. Mladenov, V, “A Modified Tantalum Oxide Memristor Model 
 *for Neural Networks with Memristor-Based Synapses,” IEEE 
-*Conference Pr. MOCAST2020, DOI:10.1109/MOCAST49295.2020.9200238, pp.1-4.
-
+*Conf. Pr. MOCAST 2020, DOI:10.1109/MOCAST49295.2020.9200238, pp.1-4.
+*2.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
