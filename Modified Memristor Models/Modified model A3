@@ -4,7 +4,7 @@
 *electrode for measuring the state variable
 .subckt A3 te be Y
 *memristor model parameters
-.params ron=100 roff=16e3 k=10e3 b=10.11 cc=3.34 Cint=1 pp=2 mm=1e-4
+.params ron=100 roff=16e3 k=10e3 b=10.11 cc=0.34 Cint=1 mm=1e-4
 *capacitor for integration of memristor state variable time derivative
 Cint Y 0 1 IC=0.3
 *additional parallel high-valued resistor for preventing convergence problems
@@ -29,3 +29,4 @@ G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 *https://e-iapgos.pl/resources/html/article/details?id= 173606.
 *2. Valeri Mladenov, Advanced Memristor Modeling - Memristor Circuits and Networks, 
 *MDPI, ISBN 978-3-03897-103-0 (PDF), 2019, pp. 172.
+*3.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
