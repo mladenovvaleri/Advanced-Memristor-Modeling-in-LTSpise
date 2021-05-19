@@ -5,7 +5,7 @@
 .subckt K9 te be Y
 *memristor parameters
 .params yon=0.06 sigmap=4e-5 Cint=1 A=1e-10 sigmaoff=0.013 B=1e-4 ro=100
-.params yoff=0.4 Gm=0.025 m=1e-3 beta=500 aa=3.5e-6 bb=3.1 sigmaon=0.45
+.params yoff=0.4 Gm=0.025 m=1e-4 beta=500 aa=3.5e-6 bb=3.1 sigmaon=0.45
 * modeling the memristor current
 G1 te be value={V(te,be)*(Gm*V(Y)+(1-V(Y))*(aa*exp(bb*sqrt(V(te,be)*((1/(1+exp(-ro*V(te,be))))-(1/(1+exp(ro*V(te,be)))))))))}
 *modeling the memristor state
@@ -30,3 +30,4 @@ Rad Y 0 10MEG
 *W. Yi, G. Medeiros-Ribeiro, R. S. Williams, “State Dynamics and Modeling 
 *of Tantalum Oxide Memristors,” IEEE Transactions on Electron 
 *Devices, Vol. 60, No. 7, July 2013, pp. 2194 - 2202.
+*3.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
