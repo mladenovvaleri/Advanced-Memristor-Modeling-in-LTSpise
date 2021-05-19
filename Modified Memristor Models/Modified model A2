@@ -18,7 +18,7 @@
 *memristor model parameters
 *ron - on resistance state, roff - high resistance state, k=(mu*ron)/(D^2)
 *k is a constant dependent on the memristor parameters, mm, pp are tuning coefficients
-.params ron=100 roff=16e3 k=10e3 mm=3.12 Cint=1 m=1e-4 pp=2 uthr1=-0.15 uthr2=0.15
+.params ron=100 roff=16e3 k=10e3 mm=1.12 Cint=1 m=1e-4 pp=10 uthr1=-0.1 uthr2=0.1
 *capacitor for integration of memristor state variable time derivative
 Cint Y 0 1 IC=0.3
 *additional parallel high-valued resistor for preventing convergence problems
@@ -39,3 +39,4 @@ G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 * Sources: 1. Mladenov, V., S. Kirilov. , A Nonlinear Drift Memristor Model with a Modified Biolek Window Function 
 *and Activation Threshold. Electronics 2017, 6(4), 77; doi: 10.3390/electronics6040077, pp. 1 – 15.
 * 2. Valeri Mladenov, Advanced Memristor Modeling - Memristor Circuits and Networks, MDPI, ISBN 978-3-03897-103-0 (PDF), 2019, pp. 172.
+*3.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
