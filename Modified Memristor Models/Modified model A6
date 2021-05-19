@@ -4,7 +4,7 @@
 *electrode for measuring the state variable
 .subckt A6 te be Y
 *memristor model parameters
-.params a=1.11 m=5 mm=1e-4 b=9.12 cc=2.31 hi=20.2e-6 beta=60.4e-6 gama=1.32 alfa=1.38 n=5 mmm=3.1 pp=2
+.params a=4.11 m=5 mm=1e-4 b=9.12 cc=2.31 hi=15.2e-6 beta=50.4e-6 gama=0.6 alfa=2.48 n=5 mmm=3.1 pp=10
 *capacitor for integration of memristor state variable time derivative
 Cint Y 0 1 IC=0.3
 *additional parallel high-valued resistor for preventing convergence problems
@@ -22,5 +22,6 @@ G1 te be value={(hi*(exp(gama*(V(te,be)))-1)+(beta*(pow(V(Y),n))*sinh(alfa*(V(te
 *representation - applied, tunability - good, middle complexity, application - analysis of analog
 * and digital devices, neural networks, memories
 *
-*Source: V. Mladenov, A New Simplified Model for HfO2-based Memristor, Proceedings of 8th International 
+*Sources: 1. V. Mladenov, A New Simplified Model for HfO2-based Memristor, Proceedings of 8th International 
 *Conference on Modern Circuits and Systems Technologies (MOCAST) 2019, 978-1-7281-1184-1/19/, 2019.
+*2.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
