@@ -17,7 +17,7 @@
 *the parameters ron, the ionic mobility mu and the memristor length D
 *k=(mu*ron)/(D^2); b, cc - tuning parameters, uthr1 - negative activation threshold,
 *uthr2 - positive activation threshold
-.params ron=100 roff=16e3 k=10e3 b=10.23 cc=6.11 Cint=1 uthr1=-0.15 uthr2=0.15 mm=0.0001
+.params ron=100 roff=16e3 k=10e3 b=10.23 cc=2.11 Cint=1 uthr1=-0.1 uthr2=0.1 mm=0.0001
 *capacitor for integration of memristor state variable time derivative
 Cint Y 0 1 IC=0.3
 *additional parallel high-valued resistor for preventing convergence problems
@@ -39,3 +39,4 @@ G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 *and Variable Window Functions, IEEE Proceeding of 15th International Workshop on Cellular Nanoscale
 *Networks and their Applications (CNNA), 23-25 August 2016, Dresden, Germany, ISBN 978-3-8007-4252-3.
 * 2. Valeri Mladenov, Advanced Memristor Modeling - Memristor Circuits and Networks, MDPI, ISBN 978-3-03897-103-0 (PDF), 2019, pp. 172.
+*3.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
