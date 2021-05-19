@@ -8,7 +8,7 @@
 * tswp - time for switching to low resistance state, tswn - time for
 *switching to high resistance state, utp - positive voltage threshold,
 *utn - negative voltage threshold, ron - low resistance, roff - high resistance
-.params mm=1e-4 tswp=1 tswn=1 utp=0.5 utn=-0.5 ron=3e3 roff=45e3
+.params mm=1e-4 tswp=0.55 tswn=0.55 utp=0.35 utn=-0.35 ron=5e3 roff=75e3
 *step-like smooth logistic function stpp(i,mm)=0.5*(1+(i/sqrt(pow(i,2)+mm)))
 *applied for avoiding convergence problems
 *capacitor for integration the state variable time derivative
@@ -32,3 +32,4 @@ G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 *K., Cady, N. A practical hafnium-oxide memristor model suitable for 
 *circuit design and simulation. 2017 IEEE International Symposium 
 *on Circuits and Systems (ISCAS), DOI: 10.1109/ISCAS.2017.8050790, pp. 1–5.
+*2.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
