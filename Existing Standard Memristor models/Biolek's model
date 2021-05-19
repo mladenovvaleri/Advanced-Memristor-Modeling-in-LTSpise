@@ -33,5 +33,6 @@ G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 *representation - not used, tunability - partial, low complexity, application - analysis of analog
 * and digital devices, neural networks
 *
-*Source: Biolek, Z.; Biolek, D.; Biolkova, V. SPICE Model of Memristor with Nonlinear
+*Source: 1. Biolek, Z.; Biolek, D.; Biolkova, V. SPICE Model of Memristor with Nonlinear
 *Dopant Drift. Radioengineering 2009, 18, pp. 210–214.
+*2.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
