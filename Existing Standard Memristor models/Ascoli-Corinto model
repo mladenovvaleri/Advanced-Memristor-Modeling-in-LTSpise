@@ -37,3 +37,4 @@ G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 *Circuits Syst. 2012, DOI: 10.1109/TCSI.2012.2190563, Vol. 59, pp. 2713–2726.
 * 2. Ascoli, A.; Tetzlaff, R.; Corinto, F.; Gilli, M. PSpice switch-based versatile memristor 
 * model. IEEE Int. Symp. Circuits Syst. 2013, DOI: 10.1109/ISCAS.2013.6571818, pp. 205–208.
+*3.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
