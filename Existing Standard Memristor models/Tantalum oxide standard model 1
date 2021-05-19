@@ -3,7 +3,7 @@
 *additional electrode Y for measuring the state variable
 .subckt K8 te be Y
 .params yon=0.06 sigmap=4e-5 Cint=1 A=1e-10 sigmaoff=0.013 B=1e-4
-.params yoff=0.4 Gm=0.025 m=1e-3 beta=500 aa=3.5e-6 bb=3.1 sigmaon=0.45
+.params yoff=0.4 Gm=0.025 m=1e-4 beta=500 aa=2.3e-6 bb=1.6 sigmaon=0.45
 * modeling the memristor current
 G1 te be value={V(te,be)*(Gm*V(Y)+(1-V(Y))*(aa*exp(bb*sqrt(abs(V(te,be))))))}
 Gy 0 Y value={((A*sinh(V(te,be)/sigmaoff)*exp(-pow(yoff/V(Y),2))*exp(1/(1+beta*I(G1)*V(te,be)))*stpp(-V(te,be),m))+(((B*sinh(V(te,be)/sigmaon))*exp(-pow(V(Y)/yon,2))*exp(I(G1)*V(te,be)/sigmap)*stpp(V(te,be),m))))}
@@ -20,7 +20,8 @@ Rad Y 0 10MEG
 *representation - applied, tunability - good, high complexity, application - analysis of analog
 * and digital devices, neural networks, memories
 *
-*Source: J. Strachan, A. Torrezan, F. Miao, M. Pickett, J. Yang, 
+*Sources: 1.J. Strachan, A. Torrezan, F. Miao, M. Pickett, J. Yang, 
 *W. Yi, G. Medeiros-Ribeiro, R. S. Williams, “State Dynamics and Modeling 
 *of Tantalum Oxide Memristors,” IEEE Transactions on Electron 
 *Devices, Vol. 60, No. 7, July 2013, pp. 2194 - 2202.
+*2.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
