@@ -1,5 +1,5 @@
 # Advanced-Memristor-Modeling
-A memristor library containing several commonly used existing standard models and several modified models. The proposed models are for simulations of memristor circuits in LTSpise in time domain. They could be adapted for operation in PSpice or other SPICE environments.
+A unified LTSpice memristor library containing the main commonly used existing standard models and several modified models. The proposed models are for simulations of memristor circuits in LTSpise in time domain. They could be adapted for operation in PSpice or other SPICE environments.
 The memristors are two-terminal nonlinear passive elements with memory effect - after turning the power sources off they retain its resistance. Their state is changing by external voltage or current signal with appropriate amplitude and frequency. In the present library the presented models are related basically to transition metal oxide-based memristors - titanium dioxide, hafnium dioxide, tantalum oxide. The memristors are investigated intensively in the recent years for their potential applications in memory circuits, reconfigurable devices, neural networks and others.
 # 1. Modeling of memristors in LTSpise environment
 To test the proposed models and to make and analyze memristor circuits you must use LTSpice software. You can download and install it from the following link:
