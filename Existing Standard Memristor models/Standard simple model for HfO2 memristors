@@ -32,4 +32,4 @@ G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 *K., Cady, N. A practical hafnium-oxide memristor model suitable for 
 *circuit design and simulation. 2017 IEEE International Symposium 
 *on Circuits and Systems (ISCAS), DOI: 10.1109/ISCAS.2017.8050790, pp. 1–5.
-*2.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
+*2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
