@@ -24,4 +24,4 @@ G1 te be value={(hi*(exp(gama*(V(te,be)))-1)+(beta*(pow(V(Y),n))*sinh(alfa*(V(te
 *
 *Sources: 1. V. Mladenov, Analysis of Memory Matrices with HfO2 Memristors in a PSpice Environment, 
 *Electronics 2019, 8(4), 383; doi:10.3390/electronics8040383, httPS://www.mdpi.com/2079-9292/8/4/383.
-*2.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
+*2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
