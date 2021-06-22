@@ -35,4 +35,4 @@ G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 *
 *Source: 1. Biolek, Z.; Biolek, D.; Biolkova, V. SPICE Model of Memristor with Nonlinear
 *Dopant Drift. Radioengineering 2009, 18, pp. 210–214.
-*2.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
+*2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
