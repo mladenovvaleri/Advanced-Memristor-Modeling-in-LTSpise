@@ -27,4 +27,4 @@ G1 te be value={(hi*(exp(gama*(V(te,be)))-1)+(beta*(pow(V(Y),n))*sinh(alfa*(V(te
 *doi:10.3390/electronics7110289, httPS://www.mdpi.com/2079-9292/7/11/289.
 *2. Valeri Mladenov, Advanced Memristor Modeling - Memristor Circuits and Networks, 
 *MDPI, ISBN 978-3-03897-103-0 (PDF), 2019, pp. 172.
-*3.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
+*3. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
