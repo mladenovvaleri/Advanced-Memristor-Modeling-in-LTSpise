@@ -39,4 +39,4 @@ G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 *and Variable Window Functions, IEEE Proceeding of 15th International Workshop on Cellular Nanoscale
 *Networks and their Applications (CNNA), 23-25 August 2016, Dresden, Germany, ISBN 978-3-8007-4252-3.
 * 2. Valeri Mladenov, Advanced Memristor Modeling - Memristor Circuits and Networks, MDPI, ISBN 978-3-03897-103-0 (PDF), 2019, pp. 172.
-*3.Linear Technology. LTspice [Online]. Available at: http://www.linear.com/ designtools/software/#LTspice
+*3.Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
