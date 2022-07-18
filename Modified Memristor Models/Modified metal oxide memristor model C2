@@ -1,0 +1,25 @@
+*A modified memristor model for titanium dioxide memristors
+*with simple mathematical expressions
+*memristor terminals - top electrode te, bottom electrode be, and
+*additional electrode Y for measuring the state variable
+*
+.subckt C2 te be Y
+.params k1=1500 k2=1.1 gon=0.01 goff=0.0001
+.params m=1.2e-8 vthr=0.1 pp=10
+Cint Y 0 1 IC=0.3
+Rad Y 0 100G
+Gy 0 Y value={k1*pow((k2*V(te,be)),3)*(1-pow((2*V(Y)-1),(2*pp)))*(stpp((abs(V(te,be))-vthr), m))}
+G1 te be value={V(te,be)*(gon*V(Y)+goff*(1-V(Y)))}
+.func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+.ends C2
+*
+*properties: middle, high operating frequencies, low, middle, high signal levels, high nonlinearity,
+*high accuracy, activation thresholds - applied, soft-switching and hard-switching
+*modes, representation of boundary effects, nonlinear ion drift - voltage 
+*relationship, tunability - good, low complexity, application - analysis of 
+*neural networks, memories, analog reconfigurable devices
+*
+*Sources: 1. Zaykov, I., “A modified metal-oxide memristor model for reconfigurable filters”, Proceedings of
+*Technical University of Sofia, ISSN: 2738-8549, VOL. 72, NO. 2, 
+*https://doi.org/10.47978/TUS.2022.72.02.005, pp. 27 – 31.
+*2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
