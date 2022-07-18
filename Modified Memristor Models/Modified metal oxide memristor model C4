@@ -1,0 +1,32 @@
+*A modified model for titanium oxide memristors
+*with simple mathematical expressions
+*memristor terminals - top electrode te, bottom electrode be, and
+*additional electrode Y for measuring the state variable
+*
+.subckt C4 te be Y
+*electrodes of the memristor element
+.params gon = 0.01 goff = 0.00072 k = 3.2e5 mm = 0.8
+.params Cint=1 m=1.13e-4 pp=12 uthr1= -0.15 uthr2= 0.15
+* parameters of the proposed memristor model
+Cint Y 0 1 IC = 0.45
+Rad Y 0 10G
+*additional resistor for avoiding convergence problems
+Gy 0 Y value={(k*(V(te,be)*(gon*V(Y)+goff*(1-V(Y))))*(1/(mm+1))*(mm*pow((sin(pi*V(Y))),2)
++(1-pow((V(Y)-stpp(V(Y),m)),(2*pp)))))*(((stpp((uthr1-V(te,be)),m))+(stpp((V(te,be)-uthr2),m))))}
+* expression for the memristor state variable 
+G1 te be value={V(te,be)*(gon*V(Y)+goff*(1-V(Y)))}
+*state-dependent current-voltage relation
+.func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+*a step-like flat function
+.ends C4
+*
+*properties: low, middle operating frequencies, low, middle, high signal levels, high nonlinearity,
+*high accuracy, activation thresholds, soft-switching and hard-switching
+*modes, representation of the boundary effects, nonlinear ion drift - voltage 
+*relationship, tunability, middle complexity, application - analysis of 
+*analog reconfigurable devices - low-pass, high-pass, band-pass filters
+*
+*Sources: V. M. Mladenov, I. D. Zaykov and S. M. Kirilov, "Application of a Nonlinear Drift Memristor Model in 
+*Analogue Reconfigurable Devices," 2022 26th International Conference 
+*Electronics, 2022, pp. 1-6, doi: 10.1109/IEEECONF55059.2022.9810389.
+*2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
