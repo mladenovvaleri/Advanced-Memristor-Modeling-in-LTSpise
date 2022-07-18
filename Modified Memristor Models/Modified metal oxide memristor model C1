@@ -1,0 +1,35 @@
+*A modified memristor model for metal oxide memristors
+*with simple mathematical expressions
+*memristor terminals - top electrode te, bottom electrode be, and
+*additional electrode Y for measuring the state variable
+
+.subckt C1 te be Y
+* electrodes of the memristor element – the basic electrodes
+* te (top electrode, anode) and be (bottom electrode, 
+* cathode); the terminal Y could be optionally included 
+* and used for measuring the memristor state variable
+.params a=3.3 alfa=3.53 beta=150.3e-6 gama=0.07 hi=50.4e-6 k=100.7
+.params Cint=1 n=5 m=5
+* parameters of the proposed memristor model
+* obtained after comparison to experimental current-voltage
+* characteristics and parameter estimation procedure
+Cint Y 0 1 IC = 0.45
+Rad Y 0 10G
+*additional resistor Rad for avoiding convergence problems
+Gy 0 Y value={a*pow(V(te,be),m)*((1/(1+exp(-k*V(Y))))*(1/(1+exp(k*(V(Y)-1)))))}
+* Gy - expression for the memristor state variable 
+G1 te be value={(beta*pow(V(Y),n)*sinh(alfa*V(te,be)))+(hi*(exp(gama*V(te,be))-1))}
+* G1 - expresses the state-dependent current-voltage relationship
+.ends C1
+
+
+*properties: middle, high operating frequencies, low, middle signal levels, high nonlinearity,
+*high accuracy, activation thresholds - not applied, soft-switching and hard-switching
+*operating mode, representation of boundary effects, nonlinear ion drift - voltage 
+*relation, tunability - good, middle complexity, application - analysis of analog
+*neural networks, memories
+*
+*Sources: 1. Kirilov, S., I. Zaykov., "A Neural Network with HfO2 Memristors.", Proceedings of
+*the Technical University of Sofia, ISSN: 1311-0829,
+*Vol. 71, No. 1, Year 2021, https://doi.org/10.47978/TUS.2021.71.01.006, pp. 30-33.
+*2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
