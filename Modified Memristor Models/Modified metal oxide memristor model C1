@@ -1,4 +1,4 @@
-*A modified memristor model for metal oxide memristors
+*A modified memristor model for hafnium dioxide memristors
 *with simple mathematical expressions
 *memristor terminals - top electrode te, bottom electrode be, and
 *additional electrode Y for measuring the state variable
