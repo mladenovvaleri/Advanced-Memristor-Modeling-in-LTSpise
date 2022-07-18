@@ -1,0 +1,25 @@
+*A modified memristor model for metal oxide memristors
+*with simple mathematical expressions
+*memristor terminals - top electrode te, bottom electrode be, and
+*additional electrode Y for measuring the state variable
+*
+.subckt C3 te be Y
+.params k1=2855.4 k2=1.0554 Ron=132.15 Roff=1738.24
+.params Cint=1 pp=9 m=0.000101 vthr=0.1054
+Cint Y 0 1 IC=0.8544
+R1 Y 0 10G
+G1 0 Y value={(k1*(k2*V(te,be))*(k2*V(te,be))*(k2*V(te,be))*(1-pow((V(Y)-stpp(-V(te,be),m)),(2*pp))))*(stpp((abs(V(te,be))-vthr),m))}
+G2 te be value={V(te,be)/(Ron*V(Y)+Roff*(1-V(Y)))}
+.func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+.ends C3
+*
+*properties: middle, high operating frequencies, low, middle, high signal levels, high nonlinearity,
+*high accuracy, activation thresholds - included, soft-switching and hard-switching
+*operation modes, representation of the boundary effects, nonlinear ion drift - voltage 
+*relation, tunability, low complexity, application - analysis of 
+*analog reconfigurable devices - filters, generators
+*
+*Sources: 1. Mladenov V., Kirilov S., Zaykov I., “A General Model for Metal Oxide-Based Memristors and Application in Filters”, presented
+in the International Conference on Modern Circuits and Systems Technologies (MOCAST) on Electronics and Communications 2022, Bremen, Germany, 
+8 – 10 June 2022, pending for publishing in IEEE Xplore Proceedings.
+*2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
