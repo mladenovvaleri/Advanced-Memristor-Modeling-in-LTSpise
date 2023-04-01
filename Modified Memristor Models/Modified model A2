@@ -14,29 +14,44 @@
 *for avoiding convergence problems 
 *connections: te - top electrode, be - bottom electrode, Y - additional
 *electrode for measuring the state variable
+*
 .subckt A2 te be Y
+*
 *memristor model parameters
 *ron - on resistance state, roff - high resistance state, k=(mu*ron)/(D^2)
 *k is a constant dependent on the memristor parameters, mm, pp are tuning coefficients
-.params ron=100 roff=16e3 k=10e3 mm=1.12 Cint=1 m=1e-4 pp=10 uthr1=-0.1 uthr2=0.1
+*
+.params ron=100 roff=16e3 k=10e3 mm=1.12 m=1e-4 pp=10 uthr1=-0.1 uthr2=0.1 x0=0.3
+*
 *capacitor for integration of memristor state variable time derivative
-Cint Y 0 1 IC=0.3
+Cint Y 0 {1}
+.IC V(Y)=x0
+*
 *additional parallel high-valued resistor for preventing convergence problems
 Rad Y 0 10G
+*
 *memristor state variable
 Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(1/(mm+1))*(mm*pow((sin(pi*V(Y))),2)+(1-pow((V(Y)-stpp(V(Y),m)),(2*pp)))))*(((stpp((uthr1-V(te,be)),m))+(stpp((V(te,be)-uthr2),m))))}
+*
 *memristor conductance 
 G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+*
 * a step-like logistic function applied for avoiding convergence problems
+*
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+*
 .ends A2
+*
 *properties: low, middle operating frequencies, low, middle and high signal levels, high nonlinearity,
 *high accuracy, activation thresholds - not applied, soft-switching and hard-switching 
 *operating mode, representation of boundary effects, nonlinear ion drift - voltage 
 *representation - applied, tunability - good, middle complexity, application - analysis of analog
 * and digital devices, neural networks
 *
-* Sources: 1. Mladenov, V., S. Kirilov. , A Nonlinear Drift Memristor Model with a Modified Biolek Window Function 
+* Sources: 
+*1. Mladenov, V., S. Kirilov. , A Nonlinear Drift Memristor Model with a Modified Biolek Window Function 
 *and Activation Threshold. Electronics 2017, 6(4), 77; doi: 10.3390/electronics6040077, pp. 1 – 15.
+*
 * 2. Valeri Mladenov, Advanced Memristor Modeling - Memristor Circuits and Networks, MDPI, ISBN 978-3-03897-103-0 (PDF), 2019, pp. 172.
+*
 *3.Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
