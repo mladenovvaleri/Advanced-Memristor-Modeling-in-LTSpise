@@ -9,30 +9,43 @@
 *memristor circuits for soft-switching mode as well
 *terminals - top electrode te, bottom electrode be and additional 
 *electrode Y for measuring the state variable
+*
 .subckt K3 te be Y
+*
 *memristor parameters
 *ron - resistance of the memristor in low-resistance state
 *roff - resistance of the memristor for high-resistance state
 *k - a constant dependent on the ionic mobility mu, memristor length D and
 *the low-resistance ron: k=(mu*ron)/(D^2);
-.params ron=100 roff=16e3 k=10e3 Cint=1 pp=10 m=1e-5
+*
+.params ron=100 roff=16e3 k=10e3 pp=10 m=1e-5 x0=0.4
+*
 *capacitor for integration the state variable time derivative
-Cint Y 0 1 IC=0.3
+Cint Y 0 {1}
+.IC V(Y)=x0
+*
 *high-valued resistance for preventing convergence problems
 Rad Y 0 10G
+*
 *memristor state modeling
-Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(1-pow((V(Y)-stpp(-V(te,be),m)),(2*pp))))}   
+Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(1-pow((V(Y)-stpp(-V(te,be),m)),(2*pp))))} 
+*  
 *memristor conductance
 G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+*
 * step-like logistic window function
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+*
 .ends K3
+*
 *properties: low operating frequencies, low and middle signal levels, middle nonlinearity,
 *satisfactory accuracy, activation thresholds - not used, soft-switching and hard-switching 
 *operating mode, representation of boundary effects, nonlinear ion drift - voltage 
 *representation - not used, tunability - partial, low complexity, application - analysis of analog
 * and digital devices, neural networks
 *
-*Source: 1. Biolek, Z.; Biolek, D.; Biolkova, V. SPICE Model of Memristor with Nonlinear
+*Source: 
+*1. Biolek, Z.; Biolek, D.; Biolkova, V. SPICE Model of Memristor with Nonlinear
 *Dopant Drift. Radioengineering 2009, 18, pp. 210–214.
+*
 *2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
