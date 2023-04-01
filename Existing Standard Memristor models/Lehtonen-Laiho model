@@ -8,28 +8,40 @@
 *is used in the Biolek's window function for avoiding convergence problems
 *terminals: top electrode te, bottom electrode be, additional electrode Y
 *for measuring the memristor state variable
+*
 .subckt K5 te be Y
+*
 * memristor parameters for tuning the model
-.params a=1.1 m=5 mm=1e-4 pp=3 hi=20e-6 beta=60e-6 gama=1.3 alfa=1.4 n=5
+.params a=1.1 m=5 mm=1e-4 pp=3 hi=20e-6 beta=60e-6 gama=1.3 alfa=1.4 n=5 x0=0.3
+*
 *capacitor for integration the state variable time derivative 
-Cint Y 0 1 IC=0.3
+Cint Y 0 {1}
+.IC V(Y)=x0
+*
 *high-valued resistance for preventing convergence problems
 Rad Y 0 10G
+*
 *memristor state modeling
 Gy 0 Y value={(a)*(pow(V(te,be),m))*(1-pow((V(Y)-stpp(-V(te,be),mm)),(2*pp)))}
+*
 *memristor conductance
 G1 te be value={(hi*(exp(gama*(V(te,be)))-1)+(beta*(pow(V(Y),n))*sinh(alfa*(V(te,be)))))}
+*
 * step-like logistic window function
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+*
 .ends K5
+*
 *properties: low, middle and high operating frequencies, low, middle and high signal levels, high nonlinearity,
 *high accuracy, activation thresholds - not applied, soft-switching and hard-switching 
 *operating mode, representation of boundary effects, nonlinear ion drift - voltage 
 *representation - applied, tunability - good, middle complexity, application - analysis of analog
 * and digital devices, neural networks, memory devices
 *
-* Sources: 1. Lehtonen, E.; Laiho, M. CNN using memristors for neighborhood 
+* Sources: 
+*1. Lehtonen, E.; Laiho, M. CNN using memristors for neighborhood 
 * connections. 2010 12th InternationalWorkshop on Cellular Nanoscale Networks 
 * and Their Applications (CNNA), IEEE, Berkeley, CA, USA, 
 * 3–5 February 2010, DOI: 10.1109/CNNA.2010.5430304, pp. 1–4.
+*
 *2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
