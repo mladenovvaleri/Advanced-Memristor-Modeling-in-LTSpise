@@ -11,32 +11,45 @@
 *for avoiding convergence problems
 *connections: te - top electrode, be - bottom electrode, Y - additional
 *electrode for measuring the state variable
+*
 .subckt A1 te be Y
+*
 *memristor model parameters
 *ron - on resistance, roff - off resistance, k - a constant dependent on
 *the parameters ron, the ionic mobility mu and the memristor length D
 *k=(mu*ron)/(D^2); b, cc - tuning parameters, uthr1 - negative activation threshold,
 *uthr2 - positive activation threshold
-.params ron=100 roff=16e3 k=10e3 b=10.23 cc=2.11 Cint=1 uthr1=-0.1 uthr2=0.1 mm=0.0001
+*
+.params ron=100 roff=16e3 k=10e3 b=10.23 cc=2.11 uthr1=-0.1 uthr2=0.1 mm=0.0001 x0=0.3
+*
 *capacitor for integration of memristor state variable time derivative
-Cint Y 0 1 IC=0.3
+Cint Y 0 {1}
+.IC V(Y)=x0
+*
 *additional parallel high-valued resistor for preventing convergence problems
 Rad Y 0 1G
+*
 *memristor state variable
 Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(1-(pow((2*V(Y)-1),(2*round(b/cc+abs(V(te,be))))))))*((stpp((uthr1-V(te,be)),mm))+(stpp((V(te,be)-uthr2),mm)))}
+*
 *memristor conductance   
 G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+*
 *a step-like logistic function
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+*
 .ends A1
+*
 *properties: low, middle operating frequencies, low, middle signal levels, high nonlinearity,
 *high accuracy, activation thresholds - applied, soft-switching and hard-switching 
 *operating mode, representation of boundary effects, nonlinear ion drift - voltage 
 *representation - applied, tunability - good, middle complexity, application - analysis of analog
 * and digital devices, neural networks
 *
-*Sources: 1. Valeri Mladenov, Stoyan Kirilov, A Nonlinear Memristor Model with Activation Thresholds
+*Sources: 
+*1. Valeri Mladenov, Stoyan Kirilov, A Nonlinear Memristor Model with Activation Thresholds
 *and Variable Window Functions, IEEE Proceeding of 15th International Workshop on Cellular Nanoscale
 *Networks and their Applications (CNNA), 23-25 August 2016, Dresden, Germany, ISBN 978-3-8007-4252-3.
+*
 * 2. Valeri Mladenov, Advanced Memristor Modeling - Memristor Circuits and Networks, MDPI, ISBN 978-3-03897-103-0 (PDF), 2019, pp. 172.
 *3.Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
