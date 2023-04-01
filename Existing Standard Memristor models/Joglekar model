@@ -1,23 +1,35 @@
 *titanium dioxide memristor model with Joglekar window function
+*
 .subckt K2 te be Y
+*
 *memristor parameters
-.params ron=100 roff=16e3 k=10e3 Cint=1 pp=1
+.params ron=100 roff=16e3 k=10e3 pp=1 x0=0.2
+*
 *capacitor for integration the state variable time derivative
-Cint Y 0 1 IC=0.3
+Cint Y 0 {1}
+.IC V(Y)=x0
+*
 *high-valued resistance for preventing convergence problems
 Rad Y 0 10G
+*
 *memristor state modeling
-Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(1-pow((2*(V(Y))-1),(2*pp))))}   
+Gy 0 Y value={(k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*(1-pow((2*(V(Y))-1),(2*pp))))} 
+*
 *memristor conductance
 G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+*
 .ends K2
+*
 *properties: low operating frequencies, low and middle signal levels, middle nonlinearity,
 *low accuracy, activation thresholds - not used, soft-switching operating mode, partial
 *representation of boundary effects, nonlinear ion drift - voltage representation - not used,
 *tunability - partial, low complexity, application - analysis of analog and digital devices
 *
-*Sources: 1. Joglekar, Y.; Wolf, S. The Elusive Memristor: Properties of Basic 
+*Sources: 
+*1. Joglekar, Y.; Wolf, S. The Elusive Memristor: Properties of Basic 
 *Electrical Circuits. Eur. J. Phys. 2009, Vol. 30, pp. 661–675.
+*
 *2. Biolek, Z.; Biolek, D.; Biolkova, V. SPICE Model of Memristor with Nonlinear
 *Dopant Drift. Radioengineering 2009, 18, pp. 210–214.
+*
 *3. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
