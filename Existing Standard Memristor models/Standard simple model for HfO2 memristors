@@ -3,33 +3,47 @@
 *for hard-switching and soft-switching mode
 *terminals - top electrode te, bottom electrode be,
 *additional electrode Y for measuring the state variable
+*
 .subckt K6 te be Y
+*
 * memristor parameters
 * tswp - time for switching to low resistance state, tswn - time for
 *switching to high resistance state, utp - positive voltage threshold,
 *utn - negative voltage threshold, ron - low resistance, roff - high resistance
-.params mm=1e-4 tswp=0.55 tswn=0.55 utp=0.35 utn=-0.35 ron=5e3 roff=75e3
+*
+.params mm=1e-4 tswp=0.55 tswn=0.55 utp=0.35 utn=-0.35 ron=5e3 roff=75e3 x0=0.3
+*
 *step-like smooth logistic function stpp(i,mm)=0.5*(1+(i/sqrt(pow(i,2)+mm)))
 *applied for avoiding convergence problems
 *capacitor for integration the state variable time derivative
-Cint Y 0 1 IC=0.3
+*
+Cint Y 0 {1}
+.IC V(Y)=x0
+*
 *high-valued resistance for preventing convergence problems
 Rad Y 0 10G
+*
 *memristor state modeling
 Gy 0 Y value={((((1/(utp*tswp))*V(te,be))*(stpp((V(te,be)-utp),mm)))+((-(1/(utn*tswn)))*V(te,be)*(stpp((utn-V(te,be)),mm))))}
+*
 *memristor conductance
 G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+*
 * step-like logistic window function
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+*
 .ends K6
+*
 *properties: low operating frequencies, low and middle signal levels, middle nonlinearity,
 *low accuracy, activation thresholds - applied, soft-switching 
 *operating mode, representation of boundary effects - not applied, nonlinear ion drift - voltage 
 *representation - not applied, tunability - partial, middle complexity, application - analysis of analog
 * and digital devices
 *
-* Source: 1. Amer, С., Sayyaparaju, S., Rose, G., Beckmann, 
+* Source: 
+*1. Amer, С., Sayyaparaju, S., Rose, G., Beckmann, 
 *K., Cady, N. A practical hafnium-oxide memristor model suitable for 
 *circuit design and simulation. 2017 IEEE International Symposium 
 *on Circuits and Systems (ISCAS), DOI: 10.1109/ISCAS.2017.8050790, pp. 1–5.
+*
 *2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
