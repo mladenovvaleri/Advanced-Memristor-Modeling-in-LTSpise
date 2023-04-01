@@ -2,29 +2,41 @@
 *for using in LTSpice environment
 *memristor terminals - top electrode te, bottom electrode be and
 *additional electrode Y for measuring the state variable
+*
 .subckt A10 te be Y
+*
 *memristor model parameters
-.params yon=0.06 sigmap=4e-5 Cint=1 A=1e-10 sigmaoff=0.013
+.params yon=0.06 sigmap=4e-5 A=1e-10 sigmaoff=0.013 x0=0.3
 .params yoff=0.4 Gm=0.025 m=1e-4 beta=500 k1=0.000238
 .params k2=0.0002123 h1=9.897e-05 h2=0.0006531 h3=2.88e-05
+*
 *modeling the memristor current
 G1 te be value={V(te,be)*(Gm*V(Y)+(1-V(Y))*(h1*(pow(V(te,be),4))+h2*(pow(V(te,be),2))+h3))}
+*
 *modeling the memristor state
 Gy 0 Y value={(A*sinh(V(te,be)/sigmaoff)*exp(-pow(yoff/V(Y),2))*exp(1/(1+beta*I(G1)*V(te,be)))*stpp(-V(te,be),m)+(k1*(pow(V(te,be),3))+k2*(V(te,be)))*exp(-pow(V(Y)/yon,2))*exp(I(G1)*V(te,be)/sigmap)*stpp(V(te,be),m)*(1-(pow((V(Y)-stpp(-V(te,be),m)),8))))}
+*
 *capacitor for integrating and deriving the state variable
-Cint Y 0 1 IC=0.3
+Cint Y 0 {1}
+.IC V(Y)=x0
+*
 *additional resistor for preventing convergence problems
 Rad Y 0 10G
+*
 *step-like logistic function
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+*
 .ends A10
+*
 *properties: low, middle and high operating frequencies, low, middle signal levels, high nonlinearity,
 *high accuracy, activation thresholds - not applied, soft-switching and hard-switching
 *operating mode, representation of boundary effects - partial, nonlinear ion drift - voltage 
 *representation - applied, tunability - good, middle complexity, application - analysis of analog
 * and digital devices, neural networks, memories
 *
-*Sources: 1. Mladenov, V., S. Kirilov. A Simplified Model of Tantalum Oxide 
+*Sources: 
+*1. Mladenov, V., S. Kirilov. A Simplified Model of Tantalum Oxide 
 *Based Memristor and Application in Memory Crossbars., accepted for 
 *presentation and publishing in MOCAST 2021, Greece, http://mocast.physics.auth.gr/.
+*
 *2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
