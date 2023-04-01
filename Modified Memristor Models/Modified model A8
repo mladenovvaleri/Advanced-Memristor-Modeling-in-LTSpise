@@ -2,26 +2,39 @@
 *memristor with a modified Joglekar window with additional sinusoidal component 
 *connections: te - top electrode, be - bottom electrode, Y - additional
 *electrode for measuring the state variable
+*
 .subckt A8 te be Y
+*
 * memristor model parameters
-.params a=4.11 m=5 mm=1e-4 hi=20.5e-6 beta=60.3e-6 gama=0.6 alfa=2.42 n=5 pp=2 dd=1.1 g=1.4
+.params a=4.11 m=5 mm=1e-4 hi=20.5e-6 beta=60.3e-6 gama=0.6 alfa=2.42 n=5 pp=2 dd=1.1 g=1.4 x0=0.3
+*
 *capacitor for integration of memristor state variable time derivative
-Cint Y 0 1 IC=0.3
+Cint Y 0 {1}
+.IC V(Y)=x0
+*
 *additional parallel high-valued resistor for preventing convergence problems
 Rad Y 0 10G
+*
 *memristor state variable
 Gy 0 Y value={((a)*(pow(V(te,be),m))*((dd*(1-pow((2*V(Y)-1),(2*pp)))+g*pow((sin(pi*V(Y))),2)))/(dd+g))}
+*
 * memristor conductance
 G1 te be value={(hi*(exp(gama*(V(te,be)))-1)+(beta*(pow(V(Y),n))*sinh(alfa*(V(te,be)))))}
+*
 *a step-like logistic function
+*
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+*
 .ends A8
+*
 *properties: low, middle and high operating frequencies, low, middle and high signal levels, high nonlinearity,
 *high accuracy, activation thresholds - applied, soft-switching and hard-switching
 *operating mode, representation of boundary effects - applied, nonlinear ion drift - voltage 
 *representation - applied, tunability - good, middle complexity, application - analysis of analog
 * and digital devices, neural networks, memories
 *
-*Sources: 1. V. Mladenov, Analysis of Memory Matrices with HfO2 Memristors in a PSpice Environment, 
+*Sources: 
+*1. V. Mladenov, Analysis of Memory Matrices with HfO2 Memristors in a PSpice Environment, 
 *Electronics 2019, 8(4), 383; doi:10.3390/electronics8040383, httPS://www.mdpi.com/2079-9292/8/4/383.
+*
 *2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
