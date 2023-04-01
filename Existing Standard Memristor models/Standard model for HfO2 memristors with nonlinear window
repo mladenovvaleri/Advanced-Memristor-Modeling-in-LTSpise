@@ -2,36 +2,50 @@
 * with a highly nonlinear window function
 *the model is suitable for analyzing hafnium dioxide memristors
 *for soft-switching and hard-switching
-* terminals - top electrode te, bottom electrode be, and additional
+*terminals - top electrode te, bottom electrode be, and additional
 *electrode Y for measuring the memristor state variable
+*
 .subckt K7 te be Y
+*
 * memristor model parameters
 *ron - on resistance, roff - off resistance, utp - positive activation threshold,
 *utn - negative activation threshold, tswp - time for on switching,
 *tswn - time for off switching, titahrs, titalrs, betahrs, betalrs, phrs,
 *plrs - parameters for tuning the memristor model
+*
 .params mm=1e-4 tswp=0.07 tswn=0.07 utp=0.52 utn=-0.52 ron=8e3 
 .params roff=85e3 titahrs=1.05 titalrs=1.05 betahrs=1.3 betalrs=1.3;
-.params phrs=1.5 plrs=1.5
+.params phrs=1.5 plrs=1.5 x0=0.3
+*
 *capacitor for integration the state variable time derivative
-Cint Y 0 1 IC=0.3
+Cint Y 0 {1}
+.IC V(Y)=x0
+*
 *high-valued resistance for preventing convergence problems
 Rad Y 0 1G
+*
 * memristor state modeling
 Gy 0 Y value={(((stpp((V(te,be)-utp),mm))*(1/tswp)*(pow(((V(te,be)-utp)/utp),plrs))*(1/(1+exp(((titalrs*ron)-(ron*V(Y)+roff*(1-V(Y))))/(betalrs*(roff-ron))))))+(((stpp((utn-V(te,be)),mm))*(-1/tswn)*(pow(((V(te,be)-utn)/utn),phrs))*(1/(1+exp(((ron*V(Y)+roff*(1-V(Y)))-(titahrs*roff))/(betahrs*(roff-ron))))))))}
+*
 *memristor conductance
 G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
-* a modified step-like logistic window function
+*
+*a modified step-like logistic window function
+*
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+*
 .ends K7
+*
 *properties: low operating frequencies, middle signal levels, high nonlinearity,
 *middle accuracy, activation thresholds - applied, soft-switching 
 *operating mode, representation of boundary effects - applied, nonlinear ion drift - voltage 
 *representation - not applied, tunability - partial, high complexity, application - analysis of analog
 * and digital devices, neural networks
 *
-* Source: 1. Amer, С., Sayyaparaju, S., Rose, G., Beckmann, 
+* Source: 
+*1. Amer, С., Sayyaparaju, S., Rose, G., Beckmann, 
 *K., Cady, N. A practical hafnium-oxide memristor model suitable for 
 *circuit design and simulation. 2017 IEEE International Symposium 
 *on Circuits and Systems (ISCAS), DOI: 10.1109/ISCAS.2017.8050790, pp. 1–5.
+*
 *2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
