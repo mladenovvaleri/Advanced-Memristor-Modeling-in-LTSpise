@@ -2,26 +2,38 @@
 *memristor with a modified Biolek window with additional sinusoidal component 
 *connections: te - top electrode, be - bottom electrode, Y - additional
 *electrode for measuring the state variable
+*
 .subckt A6 te be Y
+*
 *memristor model parameters
-.params a=4.11 m=5 mm=1e-4 b=9.12 cc=2.31 hi=15.2e-6 beta=50.4e-6 gama=0.6 alfa=2.48 n=5 mmm=3.1 pp=10
+.params a=4.11 m=5 mm=1e-4 b=9.12 cc=2.31 hi=15.2e-6 beta=50.4e-6 gama=0.6 alfa=2.48 n=5 mmm=3.1 pp=10 x0=0.3
+*
 *capacitor for integration of memristor state variable time derivative
-Cint Y 0 1 IC=0.3
+Cint Y 0 {1}
+.IC V(Y)=x0
+*
 *additional parallel high-valued resistor for preventing convergence problems
 Rad Y 0 10G
+*
 *memristor state variable
 Gy 0 Y value={((a)*(pow(V(te,be),m))*((1/(mmm+1))*(mmm*pow((sin(pi*V(Y))),2)+(1-pow((V(Y)-stpp(V(Y),m)),(2*pp))))))}
+*
 *memristor conductance
 G1 te be value={(hi*(exp(gama*(V(te,be)))-1)+(beta*(pow(V(Y),n))*sinh(alfa*(V(te,be)))))}
+*
 * a step-like logistic function
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+*
 .ends A6
+*
 *properties: low, middle and high operating frequencies, low, middle and high signal levels, high nonlinearity,
 *high accuracy, activation thresholds - applied, soft-switching and hard-switching
 *operating mode, representation of boundary effects - applied, nonlinear ion drift - voltage 
 *representation - applied, tunability - good, middle complexity, application - analysis of analog
 * and digital devices, neural networks, memories
 *
-*Sources: 1. V. Mladenov, A New Simplified Model for HfO2-based Memristor, Proceedings of 8th International 
+*Sources: 
+*1. V. Mladenov, A New Simplified Model for HfO2-based Memristor, Proceedings of 8th International 
 *Conference on Modern Circuits and Systems Technologies (MOCAST) 2019, 978-1-7281-1184-1/19/, 2019.
+*
 *2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
