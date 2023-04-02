@@ -1,0 +1,35 @@
+* A modified metal-oxide memristor model B2
+
+.subckt B2 te be Y
+
+*anode, cathode – basic terminals; Y – additional electrode
+
+*for measuring the memristor state variavle
+
+.params ron=100 roff=16e3 k=3e5 mm=1.12 x0=0.3
+
+.params m=1e-4 pp=10 uthr1=-0.1 uthr2=0.1
+
+*memristor model parameters
+
+C1 Y 0 {1}
+
+.IC V(Y)=x0
+
+*C1 – capacitor, applied for deriving the state variable
+
+R2 Y 0 10G
+
+*R2 – additional resistor, preventing convergence problems
+
+Gy 0 Y value={k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*mm*((4*V(Y)*(1-V(Y)))+(1-pow((V(Y)-stpp(V(Y),m)),(2*pp))))*(((stpp((uthr1-V(te,be)),m))+(stpp((V(te,be)-uthr2),m))))}
+*G represents the time derivative of the memristor state
+
+G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+
+*G1 – voltage-controlled current source, representing the
+*memristor current 
+
+.func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+
+.ends B2
