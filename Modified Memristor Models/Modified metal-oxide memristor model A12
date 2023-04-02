@@ -1,0 +1,27 @@
+* A modified metal-oxide based memristor model A12
+
+.subckt A12 te be Y
+
+.params k1=0.0024 k2=2.5981 k3=568.86 k4=0.6469
+ 
+.params pp=20 m=1.2337e-4 vthr=0.1 x0=0.3
+
+Cint Y 0 {1}
+.IC V(Y)=x0
+
+R2 Y 0 100G
+
+G2 0 Y value={(k3*V(te,be)*exp(k4*V(te,be))*(1-pow((V(Y)-stpp(-V(te,be),m)),(2*pp))))*(stpp((abs(V(te,be))-vthr),m))}
+
+G1 te be value={k1*pow(V(Y),3)*sinh(k2*V(te,be))}
+
+.func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+
+.ends A12
+
+*Sources:
+*
+*1. V. Mladenov, S. Kirilov, "A Modified Metal Oxide Memristor Model," 11th Int. Conf. 
+*Modern Circ. Syst. Tech. (MOCAST), 2022, pp. 1-4, doi: 10.1109/MOCAST54814.2022.9837519.
+
+*2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
