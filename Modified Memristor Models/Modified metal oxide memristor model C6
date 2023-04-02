@@ -4,23 +4,32 @@
 *additional electrode Y for measuring the state variable
 *
 *beginning of the memristor model’s code
-.subckt C6 a c Y
-*anode, cathode – basic terminals; Y – additional electrode
+*
+.subckt C6 te be Y
+*
+*anode (top electrode), cathode (bottom electrode) – basic terminals; Y – additional electrode
 *for measuring the memristor state variavle
-.params ron=100 roff=16e3 k=3e5 mm=1.12 
-.params Cint=1 m=1e-4 pp=10 uthr1=-0.1 uthr2=0.1
+*
+.params ron=100 roff=16e3 k=3e5 mm=1.12 x0=0.3
+.params m=1e-4 pp=10 uthr1=-0.1 uthr2=0.1
 *memristor model parameters
-C1 Y 0 1 IC=0.45
+*
+C1 Y 0 {1}
+.IC V(Y)=x0
 *C1 – capacitor, applied for deriving the state variable
+*
 R2 Y 0 10G
 *R2 – additional resistor, preventing convergence problems
-Gy 0 Y value={k*V(a,c)*(1/(ron*(V(Y))+roff*(1-V(Y))))*mm*((4*V(Y)*(1-V(Y)))
-+(1-pow((V(Y)-stpp(V(Y),m)),(2*pp))))*(((stpp((uthr1-V(a,c)),m))+(stpp((V(a,c)-uthr2),m))))}
+*
+Gy 0 Y value={k*V(te,be)*(1/(ron*(V(Y))+roff*(1-V(Y))))*mm*((4*V(Y)*(1-V(Y)))+(1-pow((V(Y)-stpp(V(Y),m)),(2*pp))))*(((stpp((uthr1-V(te,be)),m))+(stpp((V(te,be)-uthr2),m))))}
 *G represents the time derivative of the memristor state
-G1 a c value={V(a,c)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+*
+G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 *G1 – voltage-controlled current source, representing the
 *memristor current 
+*
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+*
 .ends C6
 *end of the code
 *
@@ -30,7 +39,9 @@ G1 a c value={V(a,c)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 *relation, tunability, low complexity, application - analysis of 
 *memristor memory crossbars
 *
-*Sources: 1. V. M. Mladenov, I. D. Zaykov and S. M. Kirilov, "A Nonlinear Titanium Dioxide Memristor Model for 
+*Sources: 
+*1. V. M. Mladenov, I. D. Zaykov and S. M. Kirilov, "A Nonlinear Titanium Dioxide Memristor Model for 
 *Memory Crossbars Analysis," 2022 26th International Conference Electronics, 2022, 
 *pp. 1-6, doi: 10.1109/IEEECONF55059.2022.9810434.
+*
 *2. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
