@@ -17,6 +17,6 @@ The proposed modified memristor models A1 - A8 have applied a dependence between
 # Citation
 When the reader use a given memristor model from the respective library, please cite the original sources presented in the end of the respective code.
 # Memristor Symbols
-* the codes of the LTSPICE memristor models could be used with the proposed symbols in Folder "Memristor Symbols"
+* the codes of the LTSPICE memristor models could be used with the proposed symbols in Folder "Memristor Symbols for LTSPICE"
 * with the two main terminals (the anode and the cathode) or
 * with the use of the additional electrode Y for measuring the state variable
