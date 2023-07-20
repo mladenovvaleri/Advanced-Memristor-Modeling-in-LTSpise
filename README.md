@@ -16,7 +16,7 @@ The existing standard LTSpice models are abbreviated as follows: K1 (Strukov's m
 The proposed modified memristor models A1 - A8 have applied a dependence between the nonlinear ionic dopant drift velocity and the applied voltage and additional sinusoidal component for increasing the models' nonlinearity. The models A9 and A10 are simplified with respect to the corresponding original tantalum oxide memristor models. Detailed information about the memristor library models is included in the section "Properties" in the respective codes. The modified memristor models C1-C6 are based on Strukow-Wiliams, Joglekar, Biolek and Lehtonen-Laiho models, they are simplified, with a good accuracy, include differentiable and flat functions, instead of the classical Heaviside step function, with good switching properties.
 # Citation
 When the reader use a given memristor model from the respective library, please cite the original sources presented in the end of the respective code.
-*
+# Memristor Symbols
 * the codes of the LTSPICE memristor models could be used with the proposed symbols in Folder "Memristor Symbols"
 * with the two main terminals (the anode and the cathode) or
 * with the use of the additional electrode Y for measuring the state variable
