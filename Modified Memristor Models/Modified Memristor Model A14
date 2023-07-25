@@ -1,0 +1,15 @@
+* A Modified and Simple Memristor Model A14
+* operating at high-frequency signals
+.subckt A14 te be Y
+.params ron=100.7 roff=12.6e3 k=17803.4 Cint=1 m=3
+C1 Y 0 1 IC=0.37
+R1 Y 0 100G
+G2 0 Y value={(k*pow(V(te,be),m)*(pow(sin(pi*V(Y)),2)))}
+G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(-V(Y)+1))))}
+.ends A14
+*
+* For Citation:
+*V. Mladenov and S. Kirilov, "An Improved Memristor Model and Applications," 
+*2023 12th International Conference 
+*on Modern Circuits and Systems Technologies (MOCAST), 
+*Athens, Greece, 2023, pp. 1-4, doi: 10.1109/MOCAST57943.2023.10176507.
