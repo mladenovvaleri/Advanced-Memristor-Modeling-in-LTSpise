@@ -1,0 +1,54 @@
+* C:\Users\StoyanKirilov\Desktop\статии 2023\6 CNNA 2023 srok 06.07.2023 presentation\Simulations\simulacii kym 28.06.2023\LTSPICE simulations\raboteshta_1_neuron_13.07.2023_many_memr_tf_raznopolqrni_signali_5inputs.asc
+V1 N002 0 3
+V2 0 N004 3
+XU1 0 minus N002 N004 sum level1 Avol=1Meg GBW=10Meg Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=500Meg
+V3 N009 0 3
+V4 0 N010 3
+XU2 0 plus N009 N010 N007 level1 Avol=1Meg GBW=10Meg Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=500Meg
+B1 tf 0 V=1/(1+exp(-4.1*v(sum)))
+XU9 in1 minus N001 A14 m0=5k
+XU10 in3 minus N003 A14 m0=3333.33
+XU11 in2 plus N005 A14 m0=3333.33
+XU12 in4 plus N006 A14 m0=10k
+XU13 in5 plus N008 A14 m0=5k
+V7 in1 0 PWL file=aa20us_razl_sign.txt
+V8 in2 0 PWL file=bb20us_razl_sign.txt
+V9 in3 0 PWL file=cc20us_razl_sign.txt
+V10 in4 0 PWL file=dd20us_razl_sign.txt
+V11 in5 0 PWL file=ee20us_razl_sign.txt
+V5 N012 0 3
+V6 0 N016 3
+XU3 0 minus1 N012 N016 sum1 level1 Avol=1Meg GBW=10Meg Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=500Meg
+XU17 in1 minus1 N011 A14 m0=5k
+XU18 in3 minus1 N015 A14 m0=3333.33
+XU19 in2 plus1 N017 A14 m0=3333.33
+XU20 in4 plus1 N019 A14 m0=10k
+XU21 in5 plus1 N021 A14 m0=5k
+M1 N013 0 0 0 Si4864DY
+M2 0 N013 N013 N013 Si4864DY
+V15 out N013 0.5
+V13 N020 0 3
+V14 0 N022 3
+XU6 0 plus1 N020 N022 N018 level1 Avol=1Meg GBW=10Meg Vos=0 En=0 Enk=0 In=0 Ink=0 Rin=500Meg
+XX1 minus sum memr_dec_2
+XX2 minus N007 memr_dec_2
+XX3 plus N007 memr_dec_2
+XX4 minus1 sum1 memr_dec_2
+XX5 plus1 N018 memr_dec_2
+XX6 minus1 N018 memr_dec_2
+XU4 sum1 N013 N014 A14 m0=110
+
+* block symbol definitions
+.subckt memr_dec_2 te1 be1
+XU1 te1 N001 N002 A14 m0=5k
+XU2 N001 be1 N003 A14 m0=5k
+.ends memr_dec_2
+
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\StoyanKirilov\AppData\Local\LTspice\lib\cmp\standard.mos
+.tran 0 140u 0 1n
+.lib C:\Users\StoyanKirilov\Desktop\A14.txt
+.lib UniversalOpAmp1.lib
+.backanno
+.end
