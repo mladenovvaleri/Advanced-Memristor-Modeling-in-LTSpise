@@ -1,0 +1,17 @@
+* C:\Users\StoyanKirilov\Desktop\за качване в Гитхъб 17.09.2023\Draft1.asc
+V1 in 0 PWL file=linvolt.txt
+XU1 in N001 N002 A14 m0=110
+V2 out N001 0.5
+B1 tf 0 V=1/(1+exp(-4.6*v(in)))
+M1 N001 0 0 0 Si4864DY
+M2 0 N001 N001 N001 Si4864DY
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\StoyanKirilov\AppData\Local\LTspice\lib\cmp\standard.mos
+.tran 0 140u 0 10n
+* A comparison between activation functions, realized with a behavioural voltage source and with MOS transistora and a memristor element
+* Activation function, realized with a behavioural voltage source
+* Activation function, realized with MOS transistors and memristor
+.lib C:\Users\StoyanKirilov\Desktop\A14.txt
+.backanno
+.end
