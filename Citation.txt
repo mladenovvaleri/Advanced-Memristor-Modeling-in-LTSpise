@@ -1,7 +1,0 @@
-For citation of this work:
-
-Valeri Mladenov, Georgi Tsenov, Stoyan Kirilov, "LTSPICE Memristor Neuron with MOS Transistor-Based 
-Logarithmic-Sigmoidal Activation Function,"
-accepted for presentation and publishing in The 18th IEEE International Workshop
-on Cellular Nanoscale Networks and their Applications
-and The 8th Memristor and Memristive Symposium, Xanthi, Greece (https://cnna.duth.gr/)
