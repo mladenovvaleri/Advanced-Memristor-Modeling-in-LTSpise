@@ -1,0 +1,3 @@
+* A new and simple logarithmic-sigmoidal Activation function with memristor and MOS transistors with application in artificial neurons and neural networks proposed
+* analyzed and verified with both LTSPICE and MATLAB
+* applied in a simple artificial neuron, based on memristors and operational amplifiers
