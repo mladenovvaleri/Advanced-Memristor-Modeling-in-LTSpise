@@ -21,20 +21,20 @@ The existing standard LTSpice models are abbreviated as follows: K1 (Strukov's m
 # 6. Advantages and drawbacks of the considered memristor models
 The proposed modified memristor models A1 - A8 have applied a dependence between the nonlinear ionic dopant drift velocity and the applied voltage and additional sinusoidal component for increasing the models' nonlinearity. The models A9 and A10 are simplified with respect to the corresponding original tantalum oxide memristor models. Detailed information about the memristor library models is included in the section "Properties" in the respective codes. The modified memristor models C1-C6 are based on Strukow-Wiliams, Joglekar, Biolek and Lehtonen-Laiho models, they are simplified, with a good accuracy, include differentiable and flat functions, instead of the classical Heaviside step function, with good switching properties.
 
-# Citation
+# 7. Citation
 When the reader use a given memristor model from the respective library, please cite the original sources presented in the end of the respective code.
 
-# Memristor Symbols
+# 8. Memristor Symbols
 * the codes of the LTSPICE memristor models could be used with the proposed symbols in Folder "Memristor Symbols for LTSPICE"
 * with the two main terminals (the anode and the cathode) or
 * with the use of the additional electrode Y for measuring the state variable
 
-# Memristor-Based Activation Function with MOS Transistors
+# 9. Memristor-Based Activation Function with MOS Transistors
 * A new and simple Activation function with memristor and MOS transistors with application in artificial neurons and neural networks proposed
 * analyzed and verified with both LTSPICE and MATLAB
 * applied in a simple artificial neuron, based on memristors and operational amplifiers
 
-# Memristor-based Neuron with activation function, realized with MOS transistors and memristor
+# 10. Memristor-based Neuron with activation function, realized with MOS transistors and memristor
 * A new and simple memristor-based neuron with activation function with memristor and MOS transistors
 * with application in artificial neural networks proposed
 * with inputs for positive and negative synaptic weights
