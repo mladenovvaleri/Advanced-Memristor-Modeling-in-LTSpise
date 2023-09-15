@@ -1,0 +1,7 @@
+# Memristor-based Neuron with activation function, realized with MOS transistors and memristor
+
+* A new and simple memristor-based neuron with activation function with memristor and MOS transistors
+* with application in artificial neural networks proposed
+* with inputs for positive and negative synaptic weights
+* with adders, based on aoperational amplifiers and memristors
+* analyzed and verified in both LTSPICE and MATLAB
