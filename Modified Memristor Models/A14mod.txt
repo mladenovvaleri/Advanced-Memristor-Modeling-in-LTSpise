@@ -7,3 +7,4 @@ G2 0 Y value={((k*pow(V(te,be),m))*((pow(sin(pi*V(Y)),2)))*(stpp((abs(V(te,be))-
 G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
 .func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
 .ends A14mod
+
