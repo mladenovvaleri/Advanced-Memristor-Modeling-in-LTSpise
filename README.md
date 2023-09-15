@@ -20,3 +20,7 @@ When the reader use a given memristor model from the respective library, please 
 * the codes of the LTSPICE memristor models could be used with the proposed symbols in Folder "Memristor Symbols for LTSPICE"
 * with the two main terminals (the anode and the cathode) or
 * with the use of the additional electrode Y for measuring the state variable
+# Memristor-Based Activation Function with MOS Transistors
+* A new and simple Activation function with memristor and MOS transistors with application in artificial neurons and neural networks proposed
+* analyzed and verified with both LTSPICE and MATLAB
+* applied in a simple artificial neuron, based on memristors and operational amplifiers
