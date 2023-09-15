@@ -1,0 +1,9 @@
+.subckt A14mod te be Y
+.params ron=100 roff=25e3 k=10 m=3 m0=300 mm=1e-24 vthr=0.2
+C1 Y 0 {1}
+.IC V(Y)={(roff-m0)/(roff-ron)}
+R1 Y 0 100G
+G2 0 Y value={((k*pow(V(te,be),m))*((pow(sin(pi*V(Y)),2)))*(stpp((abs(V(te,be))-vthr),mm)))}
+G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+.func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+.ends A14mod
