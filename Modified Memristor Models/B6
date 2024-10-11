@@ -1,5 +1,5 @@
-# Modified memristor model B6
-# for analysis of complex memristor-based circuits
+* Modified memristor model B6
+* for analysis of complex memristor-based circuits
 . subckt B6 te be Y
 .params m0=50e3 ron=11.4 roff=61.02e3 k=1.87e5 vthr=0.2383
 C1 Y 0 {1}
@@ -8,8 +8,8 @@ R1 Y 0 100G
 G2 0 Y value={(k*pow(V(te,be),3)*(V(Y)*(1-V(Y))))*(1/(1+exp(-1000*(abs(V(te,be))-vthr))))}
 G1 te be value={V(te,be)*((1/(ron*(V(Y))+roff*(-V(Y)+1))))}
 . ends B6
-# For citation:
-# Kirilov, S. and Mladenov, V., 2024, June. “A Simple LTSPICE Memristor Neuron
-# with a Modified Transfer Function,” In 2024 13th International 
-# Conference on Modern Circuits and Systems Technologies (MOCAST) 
-# (pp. 1-4). IEEE. ISBN 979-835038542-7, DOI 10.1109/MOCAST61810.2024.10615915 
+* For citation:
+* Kirilov, S. and Mladenov, V., 2024, June. “A Simple LTSPICE Memristor Neuron
+* with a Modified Transfer Function,” In 2024 13th International 
+* Conference on Modern Circuits and Systems Technologies (MOCAST) 
+* (pp. 1-4). IEEE. ISBN 979-835038542-7, DOI 10.1109/MOCAST61810.2024.10615915 
