@@ -1,0 +1,14 @@
+* A modified memristor model for
+* analysis of complex memristor-based circuits
+.subckt bmod a c Y
+.params gon=0.01 goff=0.02e-3 k1=3e5 k2=-1200 m=3 vthr=0.22
+C1 Y 0 1 IC=0.05
+R1 Y 0 10G
+G2 0 Y value={(k1*pow(V(a,c),m)*(pow(sin(pi*V(Y)),2))*(1/(1+exp(k2*(abs(V(a,c))-vthr)))))}
+G1 a c value={V(a,c)*(((gon*(V(Y))+goff*(1-V(Y)))))}
+.ends bmod
+*
+* For citation of this work:
+* S. Kirilov, "A Simple Memristor Model for Memory Devices," 2024 13th International
+* Conference on Modern Circuits and Systems Technologies (MOCAST), Sofia, 
+* Bulgaria, 2024, pp. 1-4, doi: 10.1109/MOCAST61810.2024.10615437.
