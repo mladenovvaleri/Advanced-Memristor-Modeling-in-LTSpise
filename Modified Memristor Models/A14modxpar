@@ -1,0 +1,21 @@
+* a modified memristor model with parasitic parameters
+.subckt A14modxpar in1 in2
+L1 in1 N001 0.1p
+R1 in2 0 1.1
+XU1 N001 N002 x A14modx
+V§E 0 N002 -0.01
+I§J N002 N001 0.03µ
+C1 N001 N002 1.4p
+R2 N001 N002 10g
+.lib C:\Users\StoyanKirilov\Desktop\LTSPICE_MODELS\A14modx.txt
+.backanno
+.ends
+*
+* for use and citation
+* Georgi Tsvetanov Tsenov, Stoyan Kirilov, Valeri Mladenov; SPICE 
+* memristor model based on estimate from measured data. COMPEL 
+* 2025; https://doi.org/10.1108/COMPEL-11-2024-0492
+* Notes
+* for use of this model, the readers should first install
+* the respective memristor model without parasitics, for
+* example A14mod
