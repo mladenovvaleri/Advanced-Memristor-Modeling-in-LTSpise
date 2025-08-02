@@ -1,0 +1,12 @@
+.subckt B13 a c Y
+.params gmax=0.01 gmin=0.02e-3 k=3e5 Cint=1 vthr=0.2 n=400.2
+Cint Y 0 1 IC=0.2
+R1 Y 0 1G
+G2 0 Y value={(k*pow(V(a,c),3)*(1-pow((V(Y)-(1)/(1+exp(n*V(a,c)))),2))*(1/(1+exp(-n*(abs(V(a,c))-vthr)))))}
+G1 a c value={V(a,c)*(((gmax*(V(Y))+gmin*(1-V(Y)))))}
+.ends B13
+
+* For use and citation of this work
+* Kirilov, S.M. and Mladenov, V.M., 2025, June. Memristor-Based Logical Gates
+* and Schemes for Artificial Intelligence. In 2025 14th International Conference
+* on Modern Circuits and Systems Technologies (MOCAST) (pp. 1-4). IEEE.
