@@ -1,0 +1,14 @@
+.subckt B12 a c
+.params m0=19e3 rmin=100 rmax=20e3 k=34e3 vthr=0.2 m=-700
+Rad Y 0 10G
+Cint Y 0 {1}
+.IC V(Y)={(rmax-m0)/(rmax-rmin)}
+G2 0 Y value={(k*pow(V(a,c),3)*pow((V(Y)*(1-V(Y))),2))*(1/(1+exp(m*(abs(V(a,c))-vthr))))}
+G1 a c value={V(a,c)*((1/(rmin*(V(Y))+rmax*(1-V(Y)))))}
+.ends B12
+*
+For use and citation of this work:
+* Tsenov, G.T., Kirilov, S.M. and Mladenov, V.M., 2025, June. "A Simple Analog Neuron with 
+* Memristor Based Synapses and SATLINS Transfer Function," In 2025 14th International 
+* Conference on Modern Circuits and Systems Technologies (MOCAST) (pp. 1-4). IEEE.
+* Dresden, Germany, DOI: 10.1109/MOCAST65744.2025.11083945.
