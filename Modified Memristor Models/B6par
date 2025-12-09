@@ -1,0 +1,16 @@
+.subckt b6par in1 in2
+Cpar in1 in2 77.2p
+Rpar te in1 8.16
+Lpar mid in2 0.51p
+I§Jpar mid te −1.08μ
+V§Epar mid be 0.086
+XU1 te be B6m
+R1 be 0 10G
+.lib C:\Users\StoyanKirilov\Desktop\LTSPICE_MODELS\b6m.cir
+.backanno
+.ends b6par
+
+* For Citation:
+* Kirilov S, Mladenov V. LTSPICE Memristor Neuron with a Modified 
+* Transfer Function Based on Memristor Model with Parasitic Parameters. 
+* Electronics. 2025; 14(23):4645. https://doi.org/10.3390/electronics14234645
