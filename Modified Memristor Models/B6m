@@ -1,0 +1,14 @@
+. subckt B6m a c Y
+.params m0=10e3 ron=7077.9 roff=99.915e3 k=132.44e3 vthr=0.1998
+C1 Y 0 {1}
+IC V(Y)={(roff-m0)/(roff-ron)}
+R1 Y 0 10G
+G2 0 Y value={(k*pow(V(a,c),3)*(V(Y)*(1-V(Y))))*(1/(1+exp(−527.987*(abs(V(a,c))-
+vthr))))}
+G1 a c value={V(a,c)*((1/(ron*(V(Y))+roff*(1-V(Y)))))}
+.ends B6m
+
+* For Citation:
+* Kirilov S, Mladenov V. LTSPICE Memristor Neuron with a Modified Transfer 
+* Function Based on Memristor Model with Parasitic Parameters. Electronics. 
+* 2025; 14(23):4645. https://doi.org/10.3390/electronics14234645
