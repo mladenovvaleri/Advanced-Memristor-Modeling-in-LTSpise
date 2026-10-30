@@ -1,0 +1,23 @@
+*LTSpice memristor model modified and proposed by Prof. DSc. V. Mladenov and Assoc. Prof. Dr. Stoyan Kirilov 
+*
+1 .subckt D1 a c Y
+2 .params ron= 2265.7 roff=3.16e5 k1=1.7389e5 k2=-3000.9 m=5
+3 .params vp=0.1967 vn=-0.1817
+3 C1 Y 0 1 IC=0.9694
+4 R1 Y 0 1G
+5 G2 0 Y value={k1*pow(V(a,c),m)*(1/(1+exp(k2*(V(Y)*(1-V(Y))))))*(1/(1+exp(k2*(V(a,c)-vp))))*(1/(1+exp(k2*(vn-V(a,c)))))}
+6 G1 te be value={V(a,c)/(((ron*(V(Y))+roff*(1-V(Y)))))}
+7 .ends D1
+*
+*Sources for citation: 
+*
+* 1. S. Kirilov and V. Mladenov, "A Simple Memristor Model with a Rectangular Window Function for Memory Crossbar Analysis," 
+* 2026 15th International Conference on Modern Circuits and Systems Technologies (MOCAST), Palma, Spain, 
+* 2026, pp. 1-4, doi: 10.1109/MOCAST70204.2026.11626419.
+*
+* 2. Mladenov, V. (2021). A Unified and Open LTSPICE Memristor Model Library. 
+* Electronics, 10(13), 1594. https://doi.org/10.3390/electronics10131594
+*
+* 3. V. Mladenov, Advanced Memristor Modeling - Memristor Circuits and Networks, MDPI, ISBN 978-3-03897-103-0 (PDF), 2019, pp. 172.
+*
+* 4. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
