@@ -18,4 +18,4 @@ G1 a c value={V(a,c)*((1/(rmin*(V(Y))+rmax*(1-V(Y)))))}
 * 2. Mladenov, V. (2021). A Unified and Open LTSPICE Memristor Model Library. 
 * Electronics, 10(13), 1594. https://doi.org/10.3390/electronics10131594
 *
-* 4. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
+* 3. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
