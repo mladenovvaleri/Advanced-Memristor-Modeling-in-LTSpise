@@ -1,0 +1,23 @@
+*LTSpice memristor model modified and proposed by Prof. DSc. V. Mladenov and Assoc. Prof. Dr. Stoyan Kirilov 
+*
+.subckt Cmodp in1 in2
+Rpar te in1 21.91
+V§epar be in2 -0.46m
+Cpar te be 0.118p
+R§Gpar te be 10G
+I§Jpar be te 0.74µ
+XU1 te be cm
+R1 0 be 100G
+.lib C:\Users\StoyanKirilov\Desktop\LTSPICE_MODELS\cm.txt
+.backanno
+.ends Cmodp
+*
+*Sources for citation: 
+*
+* 1. Mladenov, V., & Kirilov, S. (2026). Memristor Models with Parasitic Parameters for Analysis of 
+* Passive Memory Arrays. Technologies, 14(3), 166. https://doi.org/10.3390/technologies14030166
+*
+* 2. Mladenov, V. (2021). A Unified and Open LTSPICE Memristor Model Library. 
+* Electronics, 10(13), 1594. https://doi.org/10.3390/electronics10131594
+*
+* 3. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
