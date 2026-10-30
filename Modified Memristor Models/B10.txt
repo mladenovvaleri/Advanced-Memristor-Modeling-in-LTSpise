@@ -1,0 +1,21 @@
+*LTSpice memristor model modified and proposed by Prof. DSc. V. Mladenov and Assoc. Prof. Dr. Stoyan Kirilov 
+*
+.subckt B10 a c
+.params rmin=265 rmax=15543 k=48133 m=3 m0=7904 mm=1e-24 vthr=95.66m pp=3
+C1 Y 0 {1}
+.IC V(Y)={(rmax-m0)/(rmax-rmin)}
+R1 Y 0 10G
+G2 0 Y value={((k*pow(V(a,c),m))*((1-pow((V(Y)-stpp(-V(a,c),mm)),(2*pp))))*(stpp((abs(V(a,c))-vthr),mm)))}
+G1 a c value={V(a,c)*((1/(rmin*(V(Y))+rmax*(1-V(Y)))))}
+.func stpp(x,p)={0.5*(1+(x/sqrt(pow(x,2)+p)))}
+.ends B10
+*
+*Sources for citation: 
+*
+* 1. Mladenov V, Kirilov S (2026), "Improved memristor model with parasitic parameters". 
+* COMPEL, Vol. 45 No. 2 pp. 282–294, doi: https://doi.org/10.1108/COMPEL-11-2024-0491
+*
+* 2. Mladenov, V. (2021). A Unified and Open LTSPICE Memristor Model Library. 
+* Electronics, 10(13), 1594. https://doi.org/10.3390/electronics10131594
+*
+* 4. Analog Devices Corporation. LTspice [Online]. Available at: https://www.analog.com/en/index.html#LTspice
